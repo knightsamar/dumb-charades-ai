@@ -11,3 +11,25 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+
+= Aim =
+A program which can enact a given movie title so that the person in front can easily guess it.
+
+= Model =
+dumb charades(dum-sheraz) game
+
+= Short Description =
+Like a dumb actor in the dumb charades games, the program will enact graphically(without sound) or display the verbose text which highly HINTS the movie name (but does not contain it in anyway), making it easier for the user to guess it. The program will use an actor (a stick figure) -- intelligent agent -- which acts in graphical mode and prints sentences in verbose/command-line mode.
+
+= Method =
+We shall use
+  #visual signs(both animated and static), symbols(graphics) for the graphical representation
+    * Will search for names with similar sounds(Eg. soundex() in oracle)
+    * Every action is divided into steps(describing the angle,motion,direction)
+    * Signs(sign language) are fed to show letters, if enactment is not possible.
+  #verbose text describing the (acting)/(hints)
+  #a knowledge-base which will be made of and be upgraded by
+    * pre-defined action sequences(videos), graphic symbols(images) and hints which are "natural" to the maximum audience.
+    * google-based image and video search(using audio-transcription facility) so that new knowledge can be acquired or "new" words can be easily enacted.
+    * a user-based teaching mechanism where the user rates each and every attempt at dumb-charades by the computer and can also "suggest" (by uploading a stored video/image or writing code for action sequences to be performed).
