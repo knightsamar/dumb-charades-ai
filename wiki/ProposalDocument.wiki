@@ -24,12 +24,53 @@ Like a dumb actor in the dumb charades games, the program will enact graphically
 
 = Method =
 We shall use
-  #visual signs(both animated and static), symbols(graphics) for the graphical representation
+  # visual signs(both animated and static), symbols(graphics) for the graphical representation
     * Will search for names with similar sounds(Eg. soundex() in oracle)
     * Every action is divided into steps(describing the angle,motion,direction)
     * Signs(sign language) are fed to show letters, if enactment is not possible.
-  #verbose text describing the (acting)/(hints)
-  #a knowledge-base which will be made of and be upgraded by
+  # verbose text describing the (acting)/(hints)
+  # a knowledge-base which will be made of and be upgraded by
     * pre-defined action sequences(videos), graphic symbols(images) and hints which are "natural" to the maximum audience.
     * google-based image and video search(using audio-transcription facility) so that new knowledge can be acquired or "new" words can be easily enacted.
     * a user-based teaching mechanism where the user rates each and every attempt at dumb-charades by the computer and can also "suggest" (by uploading a stored video/image or writing code for action sequences to be performed).
+
+= Features =
+  # You can choose from a variety of characters - Male,Female
+  # Audio - Eg. Applause on winning
+  # There will be multiple difficulty levels, depending on the no. of hints and timing.
+  # Response time, profiling, top scorer/level are recorded.
+  # User can ask for a change of movie while playing and start again.
+  # Words will be broken into nouns and/or verb, thesaurus will be used to search for synonyms.
+  # Time limit for playing the game.
+
+= Technologies = 
+  # Adobe Flex
+  # Python
+
+= WHY AND HOW DO WE WANT TO DO THIS PROJECT ? =
+In creating the above program, we intend to explore and learn the following sub-fields in AI:
+  # Deduction/Reasoning/Problem solving
+  # Knowledge representation
+  # Machine Learning -- supervised
+  # Search and optimization -- using heurisitcs
+  # Logic -- fuzzy ('if nearly this')
+ 
+Thus, it would require a basic study of each of these highly acclaimed fields and a deep understanding of the game of dumb charades and the human mind -- which is what fascinates us and drives towards this goal. Practically, we see an application in the field of education using sign languages and other fields where visual signs are easy-to-use and significant (eg. traffic control).
+
+
+= REFERENCE MATERIAL (Realized uptill now) =
+  # en.wikipedia.org/wiki/AI
+  # John McCarthy's AI FAQ -- http://www-formal.stanford.edu/jmc/whatisai/whatisai.html
+  # Artificial Intelligence: A Modern Approach by Russell and Norvig
+  # What Computers still can't do -- MIT Press
+  # John McCarthy's 'Advice Taker'
+  # J. Alan Robinson's alogrithm for logical deduction, 1963.
+  # Marvin Minsky and Seymour Papert
+
+= Tests =
+It should be able to easily represent the following movie titles, (in increasing order of 'difficulty'):
+  # 'I Love You'		-- by 15th of Jan
+  # 'Rumour has it' 		-- by 20th of Jan
+  # 'Terminator'		-- by 1st of Feb 
+  # 'Clueless'			-- by 10th of March
+  # 'Schindler's List'		-- by 20th of March
