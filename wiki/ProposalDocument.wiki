@@ -5,14 +5,6 @@
 
 This is the document that was submitted to the Course Incharge describing our intent and the project in more detail than the words "_AI-wala dumb charades_"
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-
 = Aim =
 A program which can enact a given movie title so that the person in front can easily guess it.
 
