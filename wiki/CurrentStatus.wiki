@@ -1,4 +1,4 @@
-# Determines the current status of the project
+#Determines the current status of the project
 ----
 
 = *Current Status - Date: 23 Feb 2009* =
