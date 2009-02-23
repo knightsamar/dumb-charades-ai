@@ -1,4 +1,5 @@
-#Determines the current status of the project
+#summary Determines the current status of the project
+#labels Featured,Status
 ----
 
 = *Current Status - Date: 23 Feb 2009* =
