@@ -1,0 +1,18 @@
+#summary One-sentence summary of this page.
+
+= *Current Status* =
+
+Okay. Finally, it has to start from somewhere. I am starting with current status of our project.
+
+As with the last meeting with Mr. Haridas Acharaya, our project guide, he asked to proceed ahead developing the backend. Specific details are as follows:
+
+== *The possible positions* ==
+
+
+
+
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
