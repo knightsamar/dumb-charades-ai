@@ -1,3 +1,4 @@
+# Determines the current status of the project
 ----
 
 = *Current Status - Date: 23 Feb 2009* =
@@ -7,13 +8,13 @@ Okay. Finally, it has to start from somewhere. I am starting with current status
 As with the last meeting with Mr. Haridas Acharaya, our project guide, he asked to proceed ahead developing the backend. Specific details are as follows:
 
 == *Design oriented Tasks* ==
-* Determine all the valid positions for a particular element (like various positions of eyes, mount, etc.).
-* Various combinations of element values will be available. But only some of them will have a recoginized meaning or interpretation. Try to make a set of such combination values that correspond to valid interpretations.
-* Prepare the database for the combinations.
+ * Determine all the valid positions for a particular element (like various positions of eyes, mount, etc.).
+ * Various combinations of element values will be available. But only some of them will have a recoginized meaning or interpretation. Try to make a set of such combination values that correspond to valid interpretations.
+ * Prepare the database for the combinations.
 
 == *Programming Related Tasks* ==
-* Make a program that generates the image or model corresponding to the various combinations.
-* Make a program that generates the combinations for a given image or model. This one requires some tool that allows us to move the model on runtime. Also, if any valid model position correspond to some valid interpretation, then store the same into the database.
+ * Make a program that generates the image or model corresponding to the various combinations.
+ * Make a program that generates the combinations for a given image or model. This one requires some tool that allows us to move the model on runtime. Also, if any valid model position correspond to some valid interpretation, then store the same into the database.
 
 == *Proposed Learning Mechanism* ==
 ----
