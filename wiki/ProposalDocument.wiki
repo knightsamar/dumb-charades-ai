@@ -36,7 +36,7 @@ We shall use
   # Time limit for playing the game.
 
 = Technologies = 
-  # Adobe Flex
+  # <strike>Adobe Flex</strike>
   # Python
 
 = WHY AND HOW DO WE WANT TO DO THIS PROJECT ? =
