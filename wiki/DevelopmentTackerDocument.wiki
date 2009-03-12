@@ -19,5 +19,5 @@ Written By Deepak Shakya
 == Date: 12th March 2009 ==
  * Python 2.5 - Pre installed<br/>
  * Numpy - Success, package can be imported<br/>
-   Extract the tar.gz package and run the setup.py. On debian systems, one can `sudo apt-get install python-numpy`
+   Extract the tar.gz package and run the setup.py. On debian systems, one can run this command `sudo apt-get install python-numpy`
  * NLTK - 
