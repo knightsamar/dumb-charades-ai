@@ -14,7 +14,8 @@ Following software have been installed for setting up the server environment. Th
 3. [http://sourceforge.net/projects/numpy NumPy] - Numerical Python adds a fast and sophisticated array facility to the Python language. NumPy is the most recent and most actively supported package.<br/>
 4. [http://sourceforge.net/projects/matplotlib/ MatPlotLib] - Matplotlib is a pure python plotting library with the goal of making publication quality plots using a syntax familiar to matlab users. The library uses numpy for handling large data sets and supports a variety of output backends<br/>
 5. [http://www.cs.unm.edu/~mccune/mace4/ Prover9] - Prover9 is an automated theorem prover for first-order and equational logic, and Mace4 searches for finite models and counter examples.<br/>
-6. [http://pybrain.org/ PyBrain] - 
+6. [http://pybrain.org/ PyBrain] - yBrain is a modular Machine Learning Library for Python. It's goal is to offer flexible, easy-to-use yet still powerful algorithms for Machine Learning Tasks and a variety of predefined environments to test and compare your algorithms.<br/>
+7. [http://vpython.org/ VPython] - 
 
 ----
 === Python 2.5 ===
@@ -64,4 +65,10 @@ So, got the patch [http://mglab.blogspot.com/2009/03/pythonpybrain-0.html here].
  * open this file in the extracted folder - arac/src/c/common.h
  * insert `#include<stdlib.h>` in the file and save it.
  * `sudo python setup.py build` and then `sudo python setup.py install`
-The same steps are available at that Japanese site.
+The same steps are available at that Japanese site.<br/><br/>
+
+
+=== VPython ===
+This one is trickier. You have to get some other stuff before you can compile this one.
+ * [http://www.sgi.com/products/software/opensource/glx/ GLX] - You need this one before you can install the next ones. They depend on this.
+ * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get GtkGLExt and gtkglextmm packages.
