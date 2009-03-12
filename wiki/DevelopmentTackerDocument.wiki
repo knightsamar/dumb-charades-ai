@@ -4,6 +4,9 @@
 = Development Tracker Document =
 
 
+
 == Date : 12th March 2009 ==
 Written By Deepak Shakya
 
+1. Installed python 2.6 on the virtual machine -- Success
+2. 
