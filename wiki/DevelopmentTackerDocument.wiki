@@ -8,5 +8,7 @@
 == Date : 12th March 2009 ==
 Written By Deepak Shakya
 
-1. Installed python 2.6 on the virtual machine -- Success
-2. 
+1. Installed python 2.6 (http://www.python.org/download/) on the virtual machine -- Success<br/>
+2. Install VPython (http://www.vpython.org/) - success<br/>
+3. VPython requires NumPy (http://sourceforge.net/projects/numpy)
+4. Install nltk (http://www.nltk.org/download)
