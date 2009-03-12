@@ -26,6 +26,9 @@ One can compile the source code for Python 2.5. For debian systems, type followi
 
 === Natural Language Toolkit (NLTK) ===
 Obtain the zip file from [http://nltk.googlecode.com/files/nltk-0.9.8.zip here]. Extract and install the toolkit by running `setup.py`<br/><br/>
+To get the NLTK data -
+ * `python -m nltk.downloader`<br/>
+ * Select `wordnet` and `words` to fetch the list of words in the toolkit
 
 
 
