@@ -51,10 +51,10 @@ Here is the error looks like --<br/>
 `distutils.errors.CompileError: command 'g++' failed with exit status 1`<br/>
 <br/>
 Exact details of the error are --<br/>
-`arac/src/c/layers/common.c: In function ‘void make_layer(Layer*, int, int)’:
-arac/src/c/layers/common.c:12: error: ‘malloc’ was not declared in this scope
-arac/src/c/layers/common.c: In function ‘Layer* make_layer(int, int)’:
-arac/src/c/layers/common.c:40: error: ‘malloc’ was not declared in this scope`
+`arac/src/c/layers/common.c: In function 'void make_layer(Layer*, int, int)':<br/>
+arac/src/c/layers/common.c:12: error: ‘malloc’ was not declared in this scope<br/>
+arac/src/c/layers/common.c: In function 'Layer* make_layer(int, int)':<br/>
+arac/src/c/layers/common.c:40: error: 'malloc' was not declared in this scope`
 <br/><br/>
 
 So, got the patch [http://mglab.blogspot.com/2009/03/pythonpybrain-0.html here]. Its in Japanese and was not getting translated. But, i guess the solution was pretty simple so my very good friends knightsamar phrased it out... ;) Kudos to you. Here is what he did.<br/>
