@@ -8,7 +8,7 @@
 == Date : 12th March 2009 ==
 Written By Deepak Shakya
 
-Following software have been installed for setting up the server environment. The server environment is Linux based.
+Following software have been installed for setting up the server environment. The server environment is Linux based.<br/>
 1. [http://www.python.org/download/ Python 2.5]<br/>
 2. [http://www.nltk.org/download Natural Language Toolkit]<br/>
 3. [http://sourceforge.net/projects/numpy NumPy] - Numerical Python adds a fast and sophisticated array facility to the Python language. NumPy is the most recent and most actively supported package.<br/>
@@ -20,26 +20,26 @@ Following software have been installed for setting up the server environment. Th
 === Python 2.5 ===
 One can compile the source code for Python 2.5. For debian systems, type following command<br/>
 
-`sudo apt-get install python`<br/>
+`sudo apt-get install python`<br/><br/>
 
 
 
 === Natural Language Toolkit (NLTK) ===
-Obtain the zip file from [http://nltk.googlecode.com/files/nltk-0.9.8.zip here]. Extract and install the toolkit by running `setup.py`
+Obtain the zip file from [http://nltk.googlecode.com/files/nltk-0.9.8.zip here]. Extract and install the toolkit by running `setup.py`<br/><br/>
 
 
 
 === NumPy - ===
 `sudo apt-get install python-numpy` -- debian based systems<br/>
-Download and compile the tar.gz for others
+Download and compile the tar.gz for others<br/><br/>
 
 
 
 === MatPlotLib ===
 `sudo apt-get install python-matplotlib` -- debian based systems<br/>
-Download and compile the tar.gz for others.
+Download and compile the tar.gz for others.<br/><br/>
 
 
 === Prover9 ===
 `sudo apt-get install prover9` -- debian based systems<br/>
-Download the tar.gz [http://www.cs.unm.edu/%7Emccune/prover9/gui/p9m4-v05.tar.gz here] and compile it.
+Download the tar.gz [http://www.cs.unm.edu/%7Emccune/prover9/gui/p9m4-v05.tar.gz here] and compile it.<br/><br/>
