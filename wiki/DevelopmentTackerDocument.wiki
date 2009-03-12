@@ -13,8 +13,8 @@ Following software have been installed for setting up the server environment. Th
 2. [http://www.nltk.org/download Natural Language Toolkit]<br/>
 3. [http://sourceforge.net/projects/numpy NumPy] - Numerical Python adds a fast and sophisticated array facility to the Python language. NumPy is the most recent and most actively supported package.<br/>
 4. [http://sourceforge.net/projects/matplotlib/ MatPlotLib] - Matplotlib is a pure python plotting library with the goal of making publication quality plots using a syntax familiar to matlab users. The library uses numpy for handling large data sets and supports a variety of output backends<br/>
-5. [http://www.cs.unm.edu/~mccune/mace4/ Prover9] - Prover9 is an automated theorem prover for first-order and equational logic, and Mace4 searches for finite models and counter examples.
-
+5. [http://www.cs.unm.edu/~mccune/mace4/ Prover9] - Prover9 is an automated theorem prover for first-order and equational logic, and Mace4 searches for finite models and counter examples.<br/>
+6. [http://pybrain.org/ PyBrain] - 
 
 ----
 === Python 2.5 ===
@@ -43,3 +43,6 @@ Download and compile the tar.gz for others.<br/><br/>
 === Prover9 ===
 `sudo apt-get install prover9` -- debian based systems<br/>
 Download the tar.gz [http://www.cs.unm.edu/%7Emccune/prover9/gui/p9m4-v05.tar.gz here] and compile it.<br/><br/>
+
+=== PyBrain ===
+[http://pybrain.org/docs/quickstart/installation.html Here] you would find the steps to install the PyBrain library.
