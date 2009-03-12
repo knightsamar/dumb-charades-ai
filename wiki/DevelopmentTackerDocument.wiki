@@ -71,4 +71,13 @@ The same steps are available at that Japanese site.<br/><br/>
 === VPython ===
 This one is trickier. You have to get some other stuff before you can compile this one.
  * [http://www.sgi.com/products/software/opensource/glx/ GLX] - You need this one before you can install the next ones. They depend on this.
- * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get GtkGLExt and gtkglextmm packages.
+ * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get GtkGLExt and gtkglextmm packages.<br/>
+<br/>
+<br/>
+<br/>
+Day Close Note -
+ * Still have to compile vpython
+ * Checked the nltk for synonyms - chapter 2 of the book (Got synonyms, definition, examples)
+
+
+----
