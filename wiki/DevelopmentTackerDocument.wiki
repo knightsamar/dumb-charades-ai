@@ -8,16 +8,38 @@
 == Date : 12th March 2009 ==
 Written By Deepak Shakya
 
-1. Installed python 2.6 (http://www.python.org/download/) on the virtual machine -- Success<br/>
-2. Install VPython (http://www.vpython.org/) - success<br/>
-3. VPython requires NumPy (http://sourceforge.net/projects/numpy)
-4. Install nltk (http://www.nltk.org/download)
+Following software have been installed for setting up the server environment. The server environment is Linux based.
+1. [http://www.python.org/download/ Python 2.5]<br/>
+2. [http://www.nltk.org/download Natural Language Toolkit]<br/>
+3. [http://sourceforge.net/projects/numpy NumPy] - Numerical Python adds a fast and sophisticated array facility to the Python language. NumPy is the most recent and most actively supported package.<br/>
+4. [http://sourceforge.net/projects/matplotlib/ MatPlotLib] - Matplotlib is a pure python plotting library with the goal of making publication quality plots using a syntax familiar to matlab users. The library uses numpy for handling large data sets and supports a variety of output backends<br/>
+5. [http://www.cs.unm.edu/~mccune/mace4/ Prover9] - Prover9 is an automated theorem prover for first-order and equational logic, and Mace4 searches for finite models and counter examples.
+
+
+----
+=== Python 2.5 ===
+One can compile the source code for Python 2.5. For debian systems, type following command<br/>
+
+`sudo apt-get install python`<br/>
 
 
 
+=== Natural Language Toolkit (NLTK) ===
+Obtain the zip file from [http://nltk.googlecode.com/files/nltk-0.9.8.zip here]. Extract and install the toolkit by running `setup.py`
 
-== Date: 12th March 2009 ==
- * Python 2.5 - Pre installed<br/>
- * Numpy - Success, package can be imported<br/>
-   Extract the tar.gz package and run the setup.py. On debian systems, one can run this command `sudo apt-get install python-numpy`
- * NLTK - 
+
+
+=== NumPy - ===
+`sudo apt-get install python-numpy` -- debian based systems<br/>
+Download and compile the tar.gz for others
+
+
+
+=== MatPlotLib ===
+`sudo apt-get install python-matplotlib` -- debian based systems<br/>
+Download and compile the tar.gz for others.
+
+
+=== Prover9 ===
+`sudo apt-get install prover9` -- debian based systems<br/>
+Download the tar.gz [http://www.cs.unm.edu/%7Emccune/prover9/gui/p9m4-v05.tar.gz here] and compile it.
