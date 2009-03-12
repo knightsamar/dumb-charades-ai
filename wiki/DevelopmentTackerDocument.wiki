@@ -45,4 +45,20 @@ Download and compile the tar.gz for others.<br/><br/>
 Download the tar.gz [http://www.cs.unm.edu/%7Emccune/prover9/gui/p9m4-v05.tar.gz here] and compile it.<br/><br/>
 
 === PyBrain ===
-[http://pybrain.org/docs/quickstart/installation.html Here] you would find the steps to install the PyBrain library.
+[http://pybrain.org/docs/quickstart/installation.html Here] you would find the steps to install the PyBrain library.<br/>
+We preferred the zip version to compile the code. Got some error with g++<br/>
+Here is the error looks like --<br/>
+`distutils.errors.CompileError: command 'g++' failed with exit status 1`<br/>
+<br/>
+Exact details of the error are --<br/>
+`arac/src/c/layers/common.c: In function ‘void make_layer(Layer*, int, int)’:
+arac/src/c/layers/common.c:12: error: ‘malloc’ was not declared in this scope
+arac/src/c/layers/common.c: In function ‘Layer* make_layer(int, int)’:
+arac/src/c/layers/common.c:40: error: ‘malloc’ was not declared in this scope`
+<br/><br/>
+
+So, got the patch [http://mglab.blogspot.com/2009/03/pythonpybrain-0.html here]. Its in Japanese and was not getting translated. But, i guess the solution was pretty simple so my very good friends knightsamar phrased it out... ;) Kudos to you. Here is what he did.<br/>
+ * open this file in the extracted folder - arac/src/c/common.h
+ * insert `#include<stdlib.h>` in the file and save it.
+ * `sudo python setup.py build` and then `sudo python setup.py install`
+The same steps are available at that Japanese site.
