@@ -70,9 +70,15 @@ The same steps are available at that Japanese site.<br/><br/>
 
 === VPython ===
 This one is trickier. You have to get some other stuff before you can compile this one.
+--GtkGLExt
+ * <strike>[http://www.sgi.com/products/software/opensource/glx/ GLX] - you will need this. So download and extract it. Copy the folder into the gtkglext folder. And copy the header files in the top level directory</strike>
  * Install `libgl1-mesa-glx`, `mesa-dev`, and `mesa-common-dev`
- * [http://www.sgi.com/products/software/opensource/glx/ GLX] - You need this one before you can install the next ones. They depend on this.
- * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get GtkGLExt and gtkglextmm packages.<br/>
+ * Then install this `sudo apt-get install freeglut3 freeglut3-dev`.
+ * Now the `make` create the problem. Anyways, commented the line 41 in following file - `gtkglext-1.2.0/gdk/x11/gdkglglxext.h`.
+ * `make install` - if you're lucky enough, you might get the stuff done.
+--GtkGLExtmm
+ *  - You need this one before you can install the next ones. They depend on this.
+ * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get  and gtkglextmm packages.<br/>
 <br/>
 <br/>
 <br/>
