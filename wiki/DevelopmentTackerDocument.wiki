@@ -69,7 +69,7 @@ The same steps are available at that Japanese site.<br/><br/>
 
 
 === VPython ===
-This one is trickier. You have to get some other stuff before you can compile this one.
+This one is trickier. You have to get some other stuff before you can compile this one.<br/>
 --GtkGLExt
  * <strike>[http://www.sgi.com/products/software/opensource/glx/ GLX] - you will need this. So download and extract it. Copy the folder into the gtkglext folder. And copy the header files in the top level directory</strike>
  * Install `libgl1-mesa-glx`, `mesa-dev`, and `mesa-common-dev`
@@ -77,8 +77,14 @@ This one is trickier. You have to get some other stuff before you can compile th
  * Now the `make` create the problem. Anyways, commented the line 41 in following file - `gtkglext-1.2.0/gdk/x11/gdkglglxext.h`.
  * `make install` - if you're lucky enough, you might get the stuff done.
 --GtkGLExtmm
- *  - You need this one before you can install the next ones. They depend on this.
  * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get  and gtkglextmm packages.<br/>
+ * It gives following errors.<br/>
+<center>
+<pre>
+`No package 'gtkmm-2.4' found
+No package 'gdkmm-2.4' found
+No package 'pangomm-1.4' found`
+</pre><center>
 <br/>
 <br/>
 <br/>
