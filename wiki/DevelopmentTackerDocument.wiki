@@ -79,16 +79,22 @@ This one is trickier. You have to get some other stuff before you can compile th
 --GtkGLExtmm
  * [http://gtkglext.sourceforge.net/ GtkGLExt - OpenGL Extension to GTK+] - Get  and gtkglextmm packages.<br/>
  * It gives following errors.<br/>
-<center>
 <pre>
 `No package 'gtkmm-2.4' found
 No package 'gdkmm-2.4' found
 No package 'pangomm-1.4' found`
-</pre></center>
-So we installed the gtkmm (`libgtkmm-2.4-dev`) package which i guess has gdkmm and pango as their dependent packages. Anyways, the package got compiled. Kudos to the knightsamar once again...;)
+</pre>
+So we installed the gtkmm (`libgtkmm-2.4-dev`) - (sudo apt-get install libgtkmm-2.4-dev) package which i guess has gdkmm and pango as their dependent packages. Anyways, the package got compiled. Kudos to the knightsamar once again...;)
 <br/>
 <br/>
 <br/>
+ * Finally the `./configure` was successful.
+ * Another problem with the `make` command.
+ * Figured it out that it needs some boosting dosages (libraries like libboost-python-dev, libboost-signals-dev, and libboost-thread-dev). It might say for other dependencies as well. Go ahead and install them too. May be they boost the performance of the system.
+ * So, `make` is done.
+ * And `make install` too. Hurray...
+
+
 Day Close Note -
  * Still have to compile vpython
  * Checked the nltk for synonyms - chapter 2 of the book (Got synonyms, definition, examples)
