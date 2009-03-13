@@ -84,7 +84,8 @@ This one is trickier. You have to get some other stuff before you can compile th
 `No package 'gtkmm-2.4' found
 No package 'gdkmm-2.4' found
 No package 'pangomm-1.4' found`
-</pre><center>
+</pre></center>
+So we installed the gtkmm (`libgtkmm-2.4-dev`) package which i guess has gdkmm and pango as their dependent packages. Anyways, the package got compiled. Kudos to the knightsamar once again...;)
 <br/>
 <br/>
 <br/>
