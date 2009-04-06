@@ -11,6 +11,9 @@ movie_title = file.readline()
 ###start processing.
 print 'Shh! I am going to enact-->', movie_title;
 
+#where is the user from ? -- take this from client.html
+user_location = raw_input("Where are you from ?");
+
 #start individual word processing
 while True:
 	#get the intividual words
@@ -24,7 +27,9 @@ while True:
 	#this is an ordered tuple(word, priority(default 0), action_seq_id)
 	ordered_list = []
 	t = 0;
-	for w in word_list:
+	
+	ordered_list = determineOrder(word_list)
+	for w in ordered_list:
 		#convert to singular --> no need, nltk CAN process plurals as well.
 		print "Processing %s" % w
 		
@@ -35,8 +40,9 @@ while True:
 		#if yes, assign +1 
 		#if no, assign -1
 		
+		
 		inDatabase, action_seq_id, length = findinDatabase(w)	#tuple unpacking
-
+		
 		if inDatabase:
 			ordered_list += [w, +1, action_seq_id, length]
 		else:
