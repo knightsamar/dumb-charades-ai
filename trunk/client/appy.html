@@ -1,0 +1,101 @@
+<!--
+	This is the front end for the appy.
+	Created By : Deepak Shakya
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>untitled</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 0.14" />
+	<style type="text/css">
+		body
+		{	margin:5px;
+			background:#F5F5F5;
+		}
+		
+		#main_container
+		{	border:1px solid black;
+			width:100%;
+			background:white;
+			overflow:auto;
+		}
+
+		#header
+		{	border:1px solid black;
+			width:95%;
+			margin:5px;
+			height:50px;
+		}
+
+		#appy
+		{	float:left;
+			border:1px solid black;
+			width:60%;
+			margin:5px;
+			height:200px;
+		}
+
+		#response_log
+		{	float:right;
+			border:1px solid black;
+			width:35%;
+			margin:5px;
+			height:200px;
+			overflow-y:scroll;
+		}
+
+		#input_area
+		{	width:95%;
+			margin:5px;
+			text-align:left;
+		}
+
+		#input_area .input_enabled,#input_area .input_enabled:focus,#input_area .input_enabled:hover
+		{	font:bold 24px 'Dejavu Sans Mono';
+			margin:5px;
+			padding:3px;
+			border:1px solid black;
+			background:#FBFFB2;
+		}
+
+		#input_area .input_disabled
+		{	font:bold 24px 'Dejavu Sans Mono';
+			margin:5px;
+			padding:3px;
+			background:#F9F9F9;
+			border:1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main_container">
+		<center>
+		<div id="header"></div>
+		<div style="overflow:auto">
+		<div id="appy"></div>
+		<div id="response_log"></div>
+		</div>
+		<div id="input_area">
+			<form action="test" method="post">
+				<fieldset id="inputbox"></fieldset>
+				<script type="text/javascript" language="javascript">
+					words = 2;
+					word_length = new Array(5,10);
+					inputbox = document.getElementById("inputbox");
+					inputbox.innerHTML = "<legend style=\"margin-left:10px;\">Type your guesses for each word</legend>";
+					for(i=0; i<words; i++)
+					{	inputbox.innerHTML = inputbox.innerHTML + "<input id=\"word"+i+"\" type=\"text\" name=\"word"+1+"\" class=\"input_enabled\" size=\""+(word_length[i]+2)+"\" maxlength=\""+word_length[i]+"\" />";
+					}
+				</script>
+			</form>
+		</div>
+
+		</center>
+	</div>
+</body>
+</html>
