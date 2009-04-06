@@ -1,0 +1,39 @@
+#this gets all the data inside the <img> tag
+a=re.compile('src="(.*)').findall(data)
+####################OUTPUT#########################
+#	['images/1.jpg" style="height:120px;width:150px;', 'images/2.jpg" style="height:120px;width:150px;',
+#	'images/3.jpg" style="height:120px;width:150px;', 'images/4.jpg "style="height:120px;width:150px;',
+#	'images/6.jpg" style="height:120px;width:150px;']
+#####################################################
+
+
+
+#this gets the data inside the src attribute of <img> tag - but there is a problem with it
+#it also takes ending double quotes(")
+for item in a:
+	print "Got-->", re.compile('.*?"').findall(item)[0]
+
+####################OUTPUT#########################
+#	Got--> images/1.jpg"
+#	Got--> images/2.jpg"
+#	Got--> images/3.jpg"
+#	Got--> images/4.jpg"
+#	Got--> images/6.jpg"
+#####################################################
+
+
+# here is what i have done
+image = []
+for item in a:
+	image.append('<img src="'+url+re.compile('.*?"').findall(item)[0][:-1]+'" />')
+
+####################OUTPUT#########################
+#	'<img src="http://localhost/appy/images/1.jpg" />'
+#	'<img src="http://localhost/appy/images/2.jpg" />'
+#	'<img src="http://localhost/appy/images/3.jpg" />'
+#	'<img src="http://localhost/appy/images/4.jpg" />'
+#	'<img src="http://localhost/appy/images/6.jpg" />'
+#####################################################
+
+
+
