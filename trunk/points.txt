@@ -1,0 +1,7 @@
+1.. all word processing and NLP must be case-insensitive.
+2.. How do we relate happiness and happy ? -- they aren't synonyms
+
+
+Future enhancements:
+	1.Design an interface to create XML action sequence files for character animation.
+	2.

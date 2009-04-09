@@ -19,6 +19,17 @@ def removeExtraApostropheS(movie_title,tokenized_list):
 	
 	return tokenized_list;
 
+def debugger(msg):
+	'''debugger prints the given debug msg on screen/in debug file log'''
+	debugger_output = "con"
+	if debugger_output == "con":#console 
+		print ("--> %s <--") % (msg)
+	else:
+		df = open(debugger_output,"a");
+		df.write(str(msg));
+		df.close();
+
+#just a placeholder func
 def findinDatabase(word):
 	'''finds a word in the database and returns True/False, action_seq_id and length of action_seq'''
 	return (random.choice([True,False]),random.choice(range(0,10)),random.choice(range(9,15))) #simulate existence of a word in database
