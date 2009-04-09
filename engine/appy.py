@@ -14,6 +14,8 @@ print 'Shh! I am going to enact-->', movie_title;
 #where is the user from ? -- take this from client.html
 user_location = raw_input("Where are you from ?");
 
+#have we already performed this movie title ?
+
 #start individual word processing
 while True:
 	#get the intividual words
@@ -50,8 +52,6 @@ while True:
 		
 		#sort on the basis of length of action sequence 
 		
-	#print movie_title + "==>"
-	#movie_title = file.readline()
 	print ordered_list;
 	break;
 
