@@ -3,9 +3,9 @@
 
 = Introduction =
 
-* Apache and mod-python
-* MySQL database
-* NLTK and nltk_data
+*  Apache and mod-python
+*  MySQL database
+*  NLTK and nltk_data
 
 
 = Details =
