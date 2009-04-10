@@ -4,6 +4,8 @@
 = Introduction =
 
   *  Apache and mod-python
+        Install mod-python (www.mod-python.org)
+        
         Inside apache's virtual hosts file, add 
 {{{
         #for appy -- added for AppY
@@ -18,8 +20,11 @@
          Create a database called 'appy'
          Import the appy.sql script
          Create a user 'appy' and password 'dumb_charades_ai' and grant all on appy.* from localhost.
-  *  NLTK and nltk_data
+         Install python support for MySQL -- MySQLdb extension.
 
+  *  NLTK and nltk_data
+         Download and install nltk. (www.nltk.org)
+         Start nltk.download() and download the wordnet corpora.
 
 = Details =
 
