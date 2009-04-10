@@ -3,9 +3,19 @@
 
 = Introduction =
 
-*  Apache and mod-python
-*  MySQL database
-*  NLTK and nltk_data
+  *  Apache and mod-python
+        Inside apache's virtual hosts file, add 
+{{{
+        #for appy -- added for AppY
+        #appy is the dumb-charades-game.
+        <Directory "/var/www/appy/dumb-charades-ai/">
+                AddHandler mod_python .py
+                PythonHandler AJAXSensor.py
+                PythonDebug On
+        </Directory>
+}}}
+  *  MySQL database
+  *  NLTK and nltk_data
 
 
 = Details =
