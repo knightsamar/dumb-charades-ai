@@ -34,3 +34,7 @@ def findinDatabase(word):
 	'''finds a word in the database and returns True/False, action_seq_id and length of action_seq'''
 	return (random.choice([True,False]),random.choice(range(0,10)),random.choice(range(9,15))) #simulate existence of a word in database
 #function ends here
+
+def error_logger(req,error):
+	req.write("Error occured :"+ error);
+	return True;
