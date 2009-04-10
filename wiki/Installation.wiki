@@ -15,6 +15,9 @@
         </Directory>
 }}}
   *  MySQL database
+         Create a database called 'appy'
+         Import the appy.sql script
+         Create a user 'appy' and password 'dumb_charades_ai' and grant all on appy.* from localhost.
   *  NLTK and nltk_data
 
 
