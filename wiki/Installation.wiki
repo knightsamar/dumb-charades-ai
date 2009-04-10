@@ -8,9 +8,9 @@
 {{{
         #for appy -- added for AppY
         #appy is the dumb-charades-game.
-        <Directory "/var/www/appy/dumb-charades-ai/">
+        <Directory "/var/www/appy/engine/">
                 AddHandler mod_python .py
-                PythonHandler AJAXSensor.py
+                PythonHandler AJAXSensor #no .py extension for this
                 PythonDebug On
         </Directory>
 }}}
