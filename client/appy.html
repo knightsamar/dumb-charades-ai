@@ -1,6 +1,10 @@
 <!--
 	This is the front end for the appy.
 	Created By : Deepak Shakya
+	AJAXified and Sensifed by : samar - 060321011
+	
+	This file is under Apache License.
+	
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -8,9 +12,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>untitled</title>
+	<title>AppY/dumb_charades_ai </title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 0.14" />
+	<script language='javascript' src='ajax-er.js'></script>
 	<style type="text/css">
 		body
 		{	margin:5px;
@@ -69,6 +74,12 @@
 			background:#F9F9F9;
 			border:1px solid black;
 		}
+		
+		#footer
+		{
+			background:#8D6565;
+			border:1px dotted green;
+		}
 	</style>
 </head>
 
@@ -89,13 +100,22 @@
 					inputbox = document.getElementById("inputbox");
 					inputbox.innerHTML = "<legend style=\"margin-left:10px;\">Type your guesses for each word</legend>";
 					for(i=0; i<words; i++)
-					{	inputbox.innerHTML = inputbox.innerHTML + "<input id=\"word"+i+"\" type=\"text\" name=\"word"+1+"\" class=\"input_enabled\" size=\""+(word_length[i]+2)+"\" maxlength=\""+word_length[i]+"\" />";
+					{	
+						inputbox.innerHTML = inputbox.innerHTML + "<input id=\"word"+i+"\" type=\"text\" name=\"word"+1+"\" class=\"input_enabled\" size=\""+(word_length[i]+2)+"\" maxlength=\""+word_length[i]+"\" onChange='userEnteredWordSensor(this.value);' />";
 					}
 				</script>
+				<b>Press TAB to submit your guess.</b>
 			</form>
 		</div>
-
+		<div id='footer'>
+			<p align='center'>
+				<a href='about.html'>About AppY</a>
+				<a href='../documentation/'>Documentation</a>
+				<a href='http://dumb-charades-ai.googlecode.com'>Project site and Contact Details</a>
+			</p>
+		</div>
 		</center>
+		
 	</div>
 </body>
 </html>

@@ -1,0 +1,98 @@
+I - Seq(RightArm("FRONT_DOWN"),RightElbow("BEND"),RightThumbFront("DEFAULT"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+we - Seq(Seq(RightArm("FRONT_DOWN"),RightElbow("BEND"),RightThumbFront("DEFAULT"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD")),Par(RightArm("FRONT"),(RightThumbFront("FOLD"),RightIndexFingerFront("DEFAULT"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD")))
+You - Par(RightArm("FRONT"),(RightThumbFront("FOLD"),RightIndexFingerFront("DEFAULT"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+Walk - Seq(RightArm("FRONT_DOWN"),LeftThigh("FRONT"),LeftArm("BACK_DOWN"),RightThigh("BACK"),Par(LeftArm("FRONT_DOWN"),RightThigh("FRONT"),RightArm("BACK_DOWN"),LeftThigh("BACK")))
+Run - Seq(Par(RightElbow("BEND","FAST"),LeftElbow("BEND","FAST")),LeftThigh("FRONT","FAST"),RightThigh("FRONT","FAST"),LeftThigh("FRONT","FAST"),RightThigh("FRONT","FAST"))
+Eat - Par(Seq(RightArm("DIAGONAL_FRONT_DOWN"),RightElbow("FULL_BEND")),RightThumbRear("DOWN"))
+Drink - Par(Seq(Head("BACK"),RightArm(DIAGONAL_FRONT_UP"),RightElbow("BEND")),RightThumbRear("UP"))
+Find - Seq(Head("FRONT"),RightArm("DIAGONAL_FRONT_DOWN"),Par(RightWrist("FLIP"),RightElbow("FULL_BEND"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightElbow("DEFAULT"),seq(RightElbow("BEND"),RightElbow("DEFAULT"))))
+Jump - Seq(Seq(Par(RightThigh("FRONT_UP"),LeftThigh("FRONT_UP")),Par(KneeLeft("BEND"),KneeRight("BEND")),Par(
+Par(RightThigh("DEFAULT"),LeftThigh("DEFAULT")),Par(KneeLeft("DEFAULT"),KneeRight("DEFAULT")))),Seq(Par(RightThigh("FRONT_UP"),LeftThigh("FRONT_UP")),Par(KneeLeft("BEND"),KneeRight("BEND")),Par(Par(RightThigh("DEFAULT"),LeftThigh("DEFAULT")),Par(KneeLeft("DEFAULT"),KneeRight("DEFAULT")))))
+Smile - Seq(RightArm("DIAGONAL_FRONT"),Par(RightElbow("BEND"),RightThumbRear("DOWN"),RightMiddleRear("DOWN"),Finger4RightRear(Down)))
+Cry - Seq(Par(RightArm("DIAGONAL_FRONT"),LeftArm("DIAGONAL_FRONT")),Par(RightElbow("FULL_BEND"),LeftElbow("FULL_BEND")),Par(RightWrist("FLIP"),LeftWrist("FLIP")),Par(RightWrist("FLIP"),LeftWrist("FLIP")))
+Giggle - Seq(Par(RightArm("DIAGONAL_FRONT_UP"),LeftArm("DIAGONAL_FRONT_UP")),Par(RightShoulder("UP"),LeftShoulder("UP")),Par(RightShoulder("DEFAULT"),Shoulder("DOWN")))
+Angry - Seq(Par(RightArm("RIGHT_DOWN"),LeftArm("LEFT_DOWN")),Par(RightElbow("FULL_BEND"),LeftElbow("FULL_BEND")),Par(RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightMiddleFinger("FOLD"),RightSmallFinger("FOLD"),LeftThumbFront("FOLD"),LeftIndexFingerFront("FOLD"),LeftMiddleFingerFront("FOLD"),LeftSmallFingerFront("FOLD")),Par(Head("FRONT_LEFT"),Head("FRONT_RIGHT"),Par(Head("FRONT_LEFT"),Head("FRONT_RIGHT"))
+Mad - Show tongue
+Bend - Waist("FRONT")
+Exercise - Par("FRONT_DOWN"),RightWrist("FLIP"),RightThumbFront("FOLD"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightElbow("FULL_BEND"),LeftArm("LEFT_DOWN"),LeftWrist("FLIP"),LeftThumbFront("FOLD"),LeftIndexFingerFront("FOLD"),LeftMiddleFingerFront("FOLD"),LeftSmallFingerFront("FOLD"),RightElbow("FULL_BEND")))))
+Study - Par(LeftWrist("FLIP"),RightWrist("FLIP"),LeftElbow("BEND"),RightElbow("BEND"),Head("FRONT_LEFT"),Head("FRONT_RIGHT"),Head("FRONT_LEFT"),Head("FRONT_RIGHT"))
+Kick - Par(RightThigh("FRONT"),RightKnee("BEND"),RightKnee("STRAIGHT"))
+Punch - Par(RightArm("RIGHT"),Par(RightArm("BACK"),RightElbow("FULL_BEND")),Par(RightArm("FRONT"),RightElbow("DEFAULT")))
+Strong - Par(RightArm("RIGHT"),LeftArm("LEFT"),RightWrist("FLIP"),LeftWrist("FLIP"),LeftElbow("BEND"),RightElbow("BEND"))
+Tired - Par(LeftShoulder("DOWN"),RightShoulder("Down"),Head(Front))
+Fly - Par(ArmMiddle(RightFrontRightUp),ArmMiddle(LeftFrontLeftUp),ArmMiddle(RightFrontRightDown),ArmMiddle(LeftFrontLeftDown))
+Punish - Par(LeftArm("LEFT"),RightArm("RIGHT"),LeftElbow("FULL_BEND"),RightElbow("FULL_BEND"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),LeftIndexFingerFront("FOLD"),LeftMiddleFingerFront("FOLD"),LeftSmallFingerFront("FOLD"))
+Love - Par(RightArm("SIDE"),RightElbow("BEND")),LeftArm("LEFT_DOWN"),LeftElbow("FULL_BEND"))
+Think - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+Intelligent -  Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightIndexFingerRear("UP"),RightIndexFingerRear("DEFAULT"))
+Hand - RightArm("UP")
+
+Shoulder - Par(LeftShoulder("UP"),RightShoulder("UP"))
+Torso - 
+Back - Par(RightArm("DIAGONAL_BACK"),RightElbow("LESS_BEND"))
+Elbow - RightElbow("FULL_BEND")
+Fingers - Par(RightIndexFingerRear("UP"),RightMiddleFingerRear("UP"),RightSmallFingerFront("UP"),RightThumbRear("UP")))
+Stomach - Par(RightArm("DIAGONAL_FRONT_DOWN"),RightElbow("BEND"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightThumbRear("UP"))
+Thigh - Par(RightThigh("FRONT"),RightKnee("BEND"))
+Legs - RightThigh("FRONT")
+Feet - Par(RightThigh("FRONT_UP"))
+Toes - Seq(Par(ToeLeft("UP"),ToeRight("UP")),Par(ToeLeft("DOWN"),ToeRight("DOWN")))
+Face - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+Lips - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightIndexFingerRear("UP"))
+Kiss - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightWrist("FLIP"),RightArm("DIAGONAL_FRONT"))
+Eyes - 
+Ears - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightWrist("FLIP"))
+Nose - Par(RightArm("FRONT_UP"),RightWrist("FLIP"),RightElbow("FULL_BEND"),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+Cheeks - Par(RightArm("DIAGONAL_FRONT_UP"),RightElbow("FULL_BEND"),RightIndexFinger("FOLD"),RightMiddleFinger("FOLD"),RightSmallFinger("FOLD"))
+Skin - Par(RightArm("DIAGONAL_FRONT_DOWN"),LeftArm("DIAGONAL_FRONT_DOWN").RightWrist("FLIP"),LeftWrist("FLIP"))
+Pull - Par(RightArm("FRONT"),LeftArm("FRONT"),RightArm("FRONT_UP"),LeftArm("FRONT_DOWN"),RightThumbFront("FOLD"),RightIndexFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),LeftThumbFront("FOLD"),LeftIndexFingerFront("FOLD"),LeftSmallfingerFront("FOLD"),LeftMiddlefingerFront("FOLD"))
+Push - Par(RightArm("FRONT_DOWN"),RightWrist("UP"),LeftArm("FRONT_DOWN"),LeftWrist("UP"),Waist("FRONT"),Head("FRONT"))
+Talk - 
+Move - Seq(Par(RightArm("RIGHT"),LeftThigh("FRONT_LEFT")),Par(LeftArm("LEFT"),RightThigh("FRONT_RIGHT")))
+Still - Default
+Yawn - Seq(Par(RightWrist("UP"),RightArm("FRONT_UP"),ArmMiddle(LeftSideFront),Elbow(LeftDiagonal45Up)),Head(FrontRight))
+Turn - Seq(Waist("LEFT"),Waist("RIGHT")))
+Shrug - Par(LeftShoulder("LEFT"),RightShoulder("UP"))
+Neck-Seq(Head("TILT_LEFT"),Head("TILT_RIGHT"))
+Sigh- Seq(Head("BACK"),Head("FRONT"))
+Dance-
+Yes-Seq(Head("BACK"),Head("FRONT"))
+No-Seq(Head("RIGHT"),Head("LEFT"))
+Sing-Seq(Par(RightArm("FRONT"),LeftArm("FRONT")),Seq(Par(RightWrist("LEFT"),LeftWrist("LEFT")),Par(RightWrist("UP"),LeftWrist("UP")),Par(RightWrist("RIGHT"),LeftWrist("RIGHT")),Par(RightWrist("UP"),LeftWrist("UP"))))
+Scared-Par(Par(RightArm("FRONT_DOWN"),LeftArm("FRONT_DOWN")),Par(RightElbow("FULL_BEND"),LeftElbow("FULL_BEND")),Par(LeftThumbFront("FOLD"),LeftIndexFingerFront("FOLD"),LeftMiddleFingerFront("FOLD"),LeftSmallFingerFront("FOLD"),RightThumbFront("FOLD"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"),RightWrist("RIGHT"),LeftWrist("LEFT")))
+Play-Seq(Par(RightArm("RIGHT"),RightWrist("FLIP")),Par(RightElbow("BEND"),RightThumbFront("FOLD"),RightIndexFingerFront("FOLD"),RightMiddleFinger("FOLD"),RightSmallFinger("FOLD")),RightWrist("RIGHT"),RightArm("FRONT"),Par(RightThumbFront("DEFAULT"),RightIndexFingerFront("DEFAULT"),RightMiddleFingerFront("DEFAULT"),RightSmallFingerFront("DEFAULT")),RightElbow("DEFAULT"))
+Hide-Seq(Par(RightArm("FRONT"),LeftArm("FRONT"))
+Yoga-Seq(Par(RightThigh("FRONT_RIGHT"),LeftThigh("FRONT_LEFT")),Par(RightKnee("FULL_BEND"),LeftKnee("FULL_BEND")))
+Cross-Seq(Par(LeftArm("FRONT"),LeftElbow("BEND"),LeftWrist("RIGHT")),Par(RightArm("SIDE"),RightElbow("BEND")))
+High-Par(ToeLeft("DOWN"),ToeRight("DOWN"),RightArm("UP"),LeftArm("UP"))
+Magic-Seq(Par(RightArm("FRONT"),LeftArm("FRONT"),RightElbow("BEND"),LeftElbow("BEND"),Seq(RightThumbRear("UP"),RightIndexFingerRear("UP"),RightMiddleFingerRear("UP"),RightSmallFingerRear("UP")),Seq(LeftThumbRear("UP"),LeftIndexFingerRear("UP"),LeftMiddleFingerRear("UP"),LeftSmallFingerRear("UP"))),Seq(RightThumbRear("DOWN"),RightIndexFingerRear("DOWN"),RightMiddleFingerRear("DOWN"),RightSmallFingerRear("DOWN")),Seq(LeftThumbRear("DOWN"),LeftIndexFingerRear("DOWN"),LeftMiddleFingerRear("DOWN"),LeftSmallFingerRear("DOWN")))
+0-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightWrist("LEFT"),RightThumbRear("DOWN"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+1-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+2-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightThumbFront("FOLD"),RightSmallFingerFront("FOLD"))
+3-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightThumbRear("DOWN"),RightIndexFingerFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD"))
+4-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightThumbRear("DOWN"))
+5-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),Par(LeftArm("FRONT"),LeftElbow("BEND")),LeftThumbFront("FOLD"),LeftMiddleFingerFront("FOLD"),LeftSmallFingerFront("FOLD")))
+6-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),Par(LeftArm("FRONT"),LeftElbow("BEND")),LeftThumbFront("FOLD"),LeftSmallFingerFront("FOLD")))
+7-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),Par(LeftArm("FRONT"),LeftElbow("BEND")),LeftThumbFront("FOLD")))
+8-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),Par(LeftArm("FRONT"),LeftElbow("BEND"))))
+9-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),Par(LeftArm("FRONT"),LeftElbow("BEND")),RightThumbFront("FOLD"),RightMiddleFingerFront("FOLD"),RightSmallFingerFront("FOLD")))
+Big-Par(LeftArm("LEFT_UP"),RightArm("RIGHT_UP"),LeftWrist("RIGHT"),RightWrist("RIGHT"))
+Small-Par(RightArm("FRONT"),RightElbow("FULL_BEND"),RightWrist("LEFT"),RightIndexFingerRear("DOWN"),RightMiddleFingerRear("DOWN"),RightSmallFingerRear("DOWN"))
+Type-Par(RightArm("FRONT"),RightElbow("BEND"),Par(LeftArm("FRONT"),RightElbow("BEND"),Seq(RightIndexFingerRear("DOWN"),LeftMiddleFingerRear("DOWN"),RightMiddleFingerRear("DOWN"))
+Open-Seq(Par(RightArm("FRONT"),RightElbow("FULL_BEND"),Par(LeftArm("FRONT"),LeftElbow("FULL_BEND")),Par(LeftArm("LEFT"),RightArm("RIGHT")))
+Close-Seq(Par(RightArm("FRONT"),RightElbow("FULL_BEND"),Par(LeftArm("FRONT"),LeftElbow("FULL_BEND")),Par(LeftArm("SIDE"),RightArm("SIDE")))
+Tease-Show Tongue
+Stop-Par(RightArm("FRONT"),RightWrist("UP"))
+Next-Seq(Par(RightArm("FRONT"),RightElbow("BEND")),RightWrist("LEFT"),RightWrist("DOWN"),RightWrist("UP"),RightWrist("RIGHT"))
+A-Par(LeftArm("SIDE_UP"),LeftWrist("LEFT),RightArm("SIDE_UP"),RightWrist("RIGHT"))
+The-Seq(Par(RightArm("FRONT"),RightWrist("LEFT")RightArm("BEND")),LeftArm("SIDE"),LeftWrist("BEND"))
+In-Seq(Par(RightArm("FRONT"),RightKnee("BEND"),RightWrist("DOWN"),RightThumbRear("DOWN"),RightMiddleFingerRear("DOWN"),RightSmallFingerRear("DOWN")),RightArm("FRONT_DOWN"))
+See-
+Animal-
+Lift-
+Clap-
+Pride-
+Salute-
+Quiet-
+Rain-
+

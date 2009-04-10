@@ -1,0 +1,217 @@
+#####################################################################################################
+#
+#	This file gives list of names of parts of the body that can be handled by aPPy.
+#	You can consider it an informal documentation for the blender animation scripting using XML.
+#
+#	Created By :- Deepak Shakya
+#	Date:- 11.04.2009 04:05:23
+#
+#####################################################################################################
+
+
+
+#######################################################################################
+# 
+#	Following are the bones that the bear has and we have to move them
+#
+#######################################################################################
+#						
+#							LEFT ARM BONES
+#
+#   Bone.002_R			[Bone "Bone.002_R"]				-- Left Arm Rear
+#   Bone.002_R.001		[Bone "Bone.002_R.001"]			-- Left Arm Middle
+#   Bone.002_R.002		[Bone "Bone.002_R.002"]			-- Left Arm Front
+#   Bone.002_R.003		[Bone "Bone.002_R.003"]			-- Left Hand
+#   Bone.002_R.004		[Bone "Bone.002_R.004"]			-- Left Thumb Rear
+#   Bone.002_R.005		[Bone "Bone.002_R.005"]			-- Left Thumb Front
+#   Bone.002_R.010		[Bone "Bone.002_R.010"]			-- Left Index Rear
+#   Bone.002_R.011		[Bone "Bone.002_R.011"]			-- Left Index Front
+#   Bone.002_R.006		[Bone "Bone.002_R.006"]			-- Left Middle Rear
+#   Bone.002_R.007		[Bone "Bone.002_R.007"]			-- Left Middle Front
+#   Bone.002_R.008		[Bone "Bone.002_R.008"]			-- Left Small Rear
+#   Bone.002_R.009		[Bone "Bone.002_R.009"]			-- Left Small Front
+#
+#######################################################################################
+#
+#							Right Arm Bones
+#
+#   Bone.002_L			[Bone "Bone.002_L"]				-- Right Arm Rear
+#   Bone.002_L.001		[Bone "Bone.002_L.001"]			-- Right Arm Middle
+#   Bone.002_L.002		[Bone "Bone.002_L.002"]			-- Right Arm Front
+#   Bone.002_L.003		[Bone "Bone.002_L.003"]			-- Right Hand
+#   Bone.002_L.004		[Bone "Bone.002_L.004"]			-- Right Thumb Rear
+#   Bone.002_L.005		[Bone "Bone.002_L.005"]			-- Right Thumb Front
+#   Bone.002_L.010		[Bone "Bone.002_L.010"]			-- Right Index Rear
+#   Bone.002_L.011		[Bone "Bone.002_L.011"]			-- Right Index Front
+#   Bone.002_L.006		[Bone "Bone.002_L.006"]			-- Right Middle Rear
+#   Bone.002_L.007		[Bone "Bone.002_L.007"]			-- Right Middle Front
+#   Bone.002_L.008		[Bone "Bone.002_L.008"]			-- Right Small Rear
+#   Bone.002_L.009		[Bone "Bone.002_L.009"]			-- Right Small Front
+#
+#######################################################################################
+#
+#								HEAD
+#
+#   Bone.004			[Bone "Bone.004"]				-- Head
+#
+#######################################################################################
+#
+#								BODY
+#
+#   Bone				[Bone "Bone"]					-- Body Bottom (I Tthink this is the parent of all)
+#   Bone.001			[Bone "Bone.001"]				-- Body Middle
+#   Bone.002			[Bone "Bone.002"]				-- Body Top
+#   Bone.003			[Bone "Bone.003"]				-- Body Upper - Neck
+#
+#######################################################################################
+#
+#						Legs and Limbs -- Right
+#
+#   Bone_L				[Bone "Bone_L"]					-- Right Connection to Thighs from apex
+#   Bone_L.001			[Bone "Bone_L.001"]				-- Right Thigh
+#   Bone_L.002			[Bone "Bone_L.002"]				-- Right Leg
+#   Bone_L.003			[Bone "Bone_L.003"]				-- Right Feet
+#   Bone_L.004			[Bone "Bone_L.004"]				-- Right Feet Fingers
+#
+#######################################################################################
+#
+#							Legs and Limbs -- Right
+#   Bone_R				[Bone "Bone_R"]					-- Left Connection to Thighs from apex
+#   Bone_R.001			[Bone "Bone_R.001"]				-- Left Thigh
+#   Bone_R.002			[Bone "Bone_R.002"]				-- Left Leg
+#   Bone_R.003			[Bone "Bone_R.003"]				-- Left Feet
+#   Bone_R.004			[Bone "Bone_R.004"]				-- Left Feet Fingers
+#
+#######################################################################################
+
+
+
+
+#######################################################################################
+#
+#						FOLLOWING PARTS HAVE BEEN DEFINED FOR THE BONES
+#
+#		These are used in the XML file that the script reads and then renders for animation
+#
+#	HEAD					- For Head
+#		Possible Positions	- LEFT,RIGHT,BACK,FRONT,FRONT_LEFT,FRONT_RIGHT,BACK_LEFT,BACK_RIGHT,TILT_LEFT,TILT_RIGHT,STRAIGHT_LEFT,STRAIGHT_RIGHT,DEFAULT
+
+#	LEFTTHUMBREAR			- For Left Thumb Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	LEFTINDEXFINGERREAR		- For Left Index Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	LEFTMIDDLEFINGERREAR	- For Left Middle Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	LEFTSMALLFINGERREAR		- For Left Small Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	RIGHTTHUMBREAR			- For Right Thumb Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	RIGHTINDEXFINGERREAR	- For Right Index Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	RIGHTMIDDLEFINGERREAR	- For Right Middle Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	RIGHTSMALLFINGERREAR	- For Right Small Finger Rear
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,DEFAULT
+
+#	LEFTTHUMBFRONT			- For Left Thumb Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	LEFTINDEXFINGERFRONT	- For Left Index Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	LEFTMIDDLEFINGERFRONT	- For Left Middle Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	LEFTSMALLFINGERFRONT	- For Left Small Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	RIGHTTHUMBFRONT			- For Right Thumb Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	RIGHTINDEXFINGERFRONT	- For Right Index Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	RIGHTMIDDLEFINGERFRONT	- For Right Middle Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	RIGHTSMALLFINGERFRONT	- For Right Small Finger Front
+#		Possible Positions	- FOLD,DEFAULT
+
+#	LEFTFEET				- For Left Feet
+#		Possible Positions	- LEFT,RIGHT,UP,DOWN,LEFT_DIAGONAL,RIGHT_DIAGONAL,DEFAULT
+
+#	RIGHTFEET				- For Right Feet
+#		Possible Positions	- LEFT,RIGHT,UP,DOWN,LEFT_DIAGONAL,RIGHT_DIAGONAL,DEFAULT
+
+#	LEFTELBOW				- For Left Elbow
+#		Possible Positions	- HALF_BEND,BEND,FULL_BEND,DEFAULT
+
+#	RIGHTELBOW				- For Right Elbow
+#		Possible Positions	- HALF_BEND,BEND,FULL_BEND,DEFAULT
+
+#	BODY					- For Body
+#		Possible Positions	- LEFT,RIGHT,DEFAULT
+
+#	LEFTARM					- For Left Arm
+#		Possible Positions	- FRONT,FRONT_UP,FRONT_DOWN,BACK,BACK_UP,BACK_DOWN,SIDE,SIDE_UP,SIDE_DOWN,UP,LEFT,LEFT_UP,LEFT_DOWN,DIAGONAL_FRONT,DIAGONAL_FRONT_UP,DIAGONAL_FRONT_DOWN,DIAGONAL_BACK,DIAGONAL_BACK_UP,DIAGONAL_BACK_DOWN,DEFAULT
+
+#	RIGHTARM				- For Right Arm
+#		Possible Positions	- FRONT,FRONT_UP,FRONT_DOWN,BACK,BACK_UP,BACK_DOWN,SIDE,SIDE_UP,SIDE_DOWN,UP,RIGHT,RIGHT_UP,RIGHT_DOWN,DIAGONAL_FRONT,DIAGONAL_FRONT_UP,DIAGONAL_FRONT_DOWN,DIAGONAL_BACK,DIAGONAL_BACK_UP,DIAGONAL_BACK_DOWN,DEFAULT
+
+#	LEFTWRIST				- For Left Wrist
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,FLIP,DEFAULT
+
+#	RIGHTWRIST				- For Right Wrist
+#		Possible Positions	- UP,DOWN,LEFT,RIGHT,FLIP,DEFAULT
+
+#	WAIST					- For Waist
+#		Possible Positions	- LEFT,RIGHT,FRONT,BACK,DEFAULT
+
+#	LEFTTOE					- For Left Toe
+#		Possible Positions	- UP,DOWN,DEFAULT
+
+#	RIGHTTOE				- For Right Toe
+#		Possible Positions	- UP,DOWN,DEFAULT
+
+#	LEFTTHIGH				- For Left Thigh
+#		Possible Positions	- FRONT,BACK,SIDE,SIDE_UP,FRONT_LEFT,FRONT_RIGHT,FRONT_UP,FRONT_LEFT_UP,FRONT_RIGHT_UP,BACK_LEFT,BACK_RIGHT,DEFAULT
+
+#	RIGHTTIGH				- For Right Thigh
+#		Possible Positions	- FRONT,BACK,SIDE,SIDE_UP,FRONT_LEFT,FRONT_RIGHT,FRONT_UP,FRONT_LEFT_UP,FRONT_RIGHT_UP,BACK_LEFT,BACK_RIGHT,DEFAULT
+
+#	LEFTSHOULDER			- For Left Shoulder
+#		Possible Positions	- UP,FRONT,BACK,DOWN,DEFAULT
+
+#	RIGHTSHOULDER			- For Right Shoulder
+#		Possible Positions	- UP,FRONT,BACK,DOWN,DEFAULT
+
+#	LEFTKNEE				- For Left Knee
+#		Possible Positions	- HALF_BEND,BEND,FULL_BEND,DEFAULT
+
+#	RIGHTKNEE				- For Right Knee
+#		Possible Positions	- HALF_BEND,BEND,FULL_BEND,DEFAULT
+
+#######################################################################################
+
+
+#######################################################################################
+#
+#	Also, one can define the speed with which the action has to be performed
+#
+#	VERY_FAST		-	Perform the action very fast
+#	FAST			- 	Perform the action fast
+#	NORMAL(Default)	-	Perform the action in normal speed
+#	SLOW			-	Perform the action slowly
+#	VERY_SLOW		-	Perform the action very slowly
+#
+#######################################################################################
+
+
+

@@ -2,36 +2,71 @@
 
 	TO DO : How actually will these sensors be fired ? -- what technically will make these sensors fire ?
 	SUGGESTION: we have a central AJAX-CGI file which interacts to user events WHILE the game is ON.
-				Find something better than AJAX-CGI...mod-python ?
+				Find something better than AJAX-CGI...mod-python ? --- IMPLEMENTED
 				
 	can we just show a green halo for the  words rightly guessed, red for wrong and orange for nearly ?
+	
+	CONVENTION:
+	all the sensors will take dataString and respond back with dict{actuator_name:{},responseString:{},responseType:'ok/nok'}
+	
+	written by samar - 060321011 and gayatri - 060321032
+	
+	This file is under Apache License.
 '''
+from orderDeterminer.py import *
+from nltk import *;
+from nltk.corpus import wordnet as wn ;
+from accessDb.py import * ;
 
 def userEnteredWordSensor(user_input):
 	#what stage are we currently in ? -- whether AS,IM or WI ?
 	#what response did user enter ?
-	if exactly_right:
-			#save our total action plan.
+	if exactly_right: 
+			#save our total action plan.	
+			cursor.executeQuery("insert into path values('',session['uid'],session['wordid']")
+			pathid=cursor.executeQuery("select pathid from path where wordid = session['wordid']")	
+			cursor.executeQuery("insert into waypoint values(pathid,type,complete_plan,session['response_time'])")
 			#LOG the path
 			#procede to the next word.
+			perform()
 			pass;
 	elif nearly_right:
 			#nearly right means -->
 				#one of the tags
-				#its a synonym
+				wid=cursor.executeQuery("Select wordid from words where word='session['word']'")
+				tags=cursor.executeQuery("Select tags from words where wordid=wid")
+				for tag in tags:
+					if ( tag == word )
+						#perform action sequence for NEXT
+						break;
+					for s in wn.synsets('session['word']'):
+								if( s == user_input )
+									#perform action sequence for NEXT
+									break;
+					else:
+						#its synonym
+							for s in wn.synsets('tag'):
+								if( s == user_input )
+									#perform action sequence for NEXT
+									break;
 				#tags's synonym...?
+						  
 			#do the 'next' action.
+			
 			#update the waypoints information --- how much NEXTS did an action/image/wi require ?
 			#give control to the client
 			pass;
-	elif not_at_all_right and time_up:
+	elif not_at_all_right:
+		    ac_seq=executeQuery("Select actionseqid from action_sequence where wordid = ")
 			#so, what stage are we currently in ? 
 			#if AS, procede to IM 
 			#if IM, procede to WI.
 			#if WI, procede to next word.
 			#LOG the action, update the waypoints information.
 			print 'Hey dude, you dont seem to guess this word...Lets go to the next one';
-
+ elif time_up:
+ 
+ 	
 def userIdleForLongTimeSensor():
 	#how long is long ? 2 minutes was the norm
 	#reset the game thing
