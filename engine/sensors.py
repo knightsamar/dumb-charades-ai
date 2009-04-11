@@ -16,7 +16,7 @@
 from orderDeterminer.py import *
 from nltk import *;
 from nltk.corpus import wordnet as wn ;
-from accessDb.py import * ;
+from accessDb.py import *;
 
 def userEnteredWordSensor(user_input):
 	#what stage are we currently in ? -- whether AS,IM or WI ?
@@ -25,7 +25,7 @@ def userEnteredWordSensor(user_input):
 			#save our total action plan.	
 			cursor.executeQuery("insert into path values('',session['uid'],session['wordid']")
 			pathid=cursor.executeQuery("select pathid from path where wordid = session['wordid']")	
-			cursor.executeQuery("insert into waypoint values(pathid,type,complete_plan,session['response_time'])")
+			cursor.executeQuery("insert into waypoint values('',pathid,session['type'],session['waypoint_info'])")
 			#LOG the path
 			#procede to the next word.
 			perform()
@@ -33,23 +33,24 @@ def userEnteredWordSensor(user_input):
 	elif nearly_right:
 			#nearly right means -->
 				#one of the tags
-				wid=cursor.executeQuery("Select wordid from words where word='session['word']'")
+				wid=cursor.executeQuery("Select wordid from words where word like 'session['word']'")
 				tags=cursor.executeQuery("Select tags from words where wordid=wid")
 				for tag in tags:
 					if ( tag == word )
 						#perform action sequence for NEXT
 						break;
+					#its synonym
 					for s in wn.synsets('session['word']'):
 								if( s == user_input )
 									#perform action sequence for NEXT
 									break;
 					else:
-						#its synonym
+					#tags's synonym...?	
 							for s in wn.synsets('tag'):
 								if( s == user_input )
 									#perform action sequence for NEXT
 									break;
-				#tags's synonym...?
+				
 						  
 			#do the 'next' action.
 			
@@ -57,7 +58,19 @@ def userEnteredWordSensor(user_input):
 			#give control to the client
 			pass;
 	elif not_at_all_right:
-		    ac_seq=executeQuery("Select actionseqid from action_sequence where wordid = ")
+			ac_seq_flag1=1;
+			while(ctr<len(ac_seq_list))
+				ctr=ctr+1;
+				ac_seq=session['ac_seq_list[ctr]'];
+			
+				if( ac_seq = NONE ):
+					#call getImage.py
+					if( ctr>0 )
+						#store waypoint(ctr-1)
+					img_seq = executeQuery("");
+			else
+				
+				#perform ac_seq
 			#so, what stage are we currently in ? 
 			#if AS, procede to IM 
 			#if IM, procede to WI.
@@ -65,7 +78,7 @@ def userEnteredWordSensor(user_input):
 			#LOG the action, update the waypoints information.
 			print 'Hey dude, you dont seem to guess this word...Lets go to the next one';
  elif time_up:
- 
+ 			
  	
 def userIdleForLongTimeSensor():
 	#how long is long ? 2 minutes was the norm

@@ -6,16 +6,26 @@
 # This file is under Apache License.
 
 #uses the mod_python libraries for all cgi dealings
-from mod_python import util, apache;
+from mod_python import util, apache, Session;
 from urllib import unquote;
 from sensors import *;
 
 debug = True;
 
+
 def handler(req):
 	'''this is sort of main(char args[]) in C -- req is the request object'''
 	global debug #refer to the global instance
 	
+	session = Session.Session(req);
+	try:
+		if session.is_new():
+			session['user_name'] = req.
+		session['type']
+		session['waypoint_info']
+		session['uid'],
+		session['wordid']
+
 	req.content_type = "text/html";
 	query_string = util.parse_qs(req.parsed_uri[7]);
 	
@@ -33,6 +43,14 @@ def handler(req):
 		req.write("You said %s and the response is %s" % senseString, responseList );
 	return apache.OK;
 
-def prepareandsendResponse(responseList):
-	
-	
+def prepareandsendResponse(responseDict):
+	response = """
+		<controller-response>
+				<sensor-name>%s</sensor-name>
+				<actuator-name>%s</actuator-name>
+				<actuator-commands>
+					<command type='action_sequence'>{path}</command>
+					<command type='image_sequence'>{paths-seperated-by-semicolon}</command>
+					<command type='word_info'>{word_info}</command>
+				</actuator-commands>
+		</controller-response>""";
