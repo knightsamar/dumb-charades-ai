@@ -1,0 +1,188 @@
+#labels Phase-Deploy
+{{{
+package com.DB;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class DBHelper {
+	
+	
+	private static DataSource src;
+	private static Connection con;
+	private static ResultSet rslset;
+	private static boolean isconnected=false;
+	private static Statement stmt;
+	
+	//Establishes connection
+	public static void getConnection()
+	{
+		
+		try
+		{
+			//Obtaining initial context
+			InitialContext ic=new InitialContext();
+			
+			//Looking up for Datasource in JNDI
+			src=(DataSource) ic.lookup("java:/OracleDS");
+			
+			//set connection
+			con=src.getConnection();
+			isconnected=true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("-----------------------------------------------------"+e.getMessage()+"------------------");
+			e.printStackTrace();
+			isconnected=false;
+		}
+	}
+	
+	//Close Connection
+	public static void CloseConnection()
+	{
+		try
+		{
+			con.close();
+			isconnected=false;
+		}
+		catch(Exception e)
+		{
+			isconnected=true;
+		}
+	}
+	
+	//Performs Select query
+	public static ResultSet doselect(String qry)
+	{
+		try
+		{
+				getConnection();
+				stmt=con.createStatement();
+				rslset=stmt.executeQuery(qry);
+				//CloseConnection();
+				return rslset;
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("I am throwing exception");
+			e.printStackTrace();
+			CloseConnection();
+			return null;
+		}
+		
+	}
+	
+	//Gets status of existing user
+	public static String exists_status(String qry)
+	{
+		try
+		{
+				getConnection();
+				stmt=con.createStatement();
+				rslset=stmt.executeQuery(qry);
+				if(rslset!=null && rslset.next())
+				{
+					String user_status=rslset.getString("user_type");
+					CloseConnection();
+					return user_status;
+				}
+				else
+				{
+					CloseConnection();
+					return null;
+				}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("I am throwing exception");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//Gets a column value for a particular column name passed to this method
+	public static String get_column_value(String qry,String column_name)
+	{
+		try
+		{
+				getConnection();
+				stmt=con.createStatement();
+				rslset=stmt.executeQuery(qry);
+				if(rslset!=null && rslset.next())
+				{
+					String column_value=rslset.getString(column_name);
+					CloseConnection();
+					return column_value;
+				}
+				else
+				{
+					CloseConnection();
+					return null;
+				}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("I am throwing exception");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//Perform Data Manipulation Tasks
+	public static int doDml(String qry)
+	{
+		try
+		{
+				getConnection();
+				stmt=con.createStatement();
+				int rows_affected=stmt.executeUpdate(qry);
+				CloseConnection();
+				return rows_affected;
+							
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public static boolean startTransaction()
+	{
+		try
+		{
+			con.setAutoCommit(false);
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static boolean endTransaction()
+	{
+		try
+		{
+			con.commit();
+			con.setAutoCommit(true);
+			return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+}
+
+}}}
