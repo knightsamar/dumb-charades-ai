@@ -1,0 +1,118 @@
+#labels Phase-Deploy
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	
+	<!-- Here is our main package which all the packages will extend. -->
+	<package name="default" namespace="/jsp" extends="struts-default">
+		<!-- Lets configure the Interceptors -->
+		<interceptors>
+			<interceptor name="applicationInterceptor" class="com.patni.utils.ApplicationInterceptor" />
+			<interceptor name="userInterceptor" class="com.patni.utils.UserInterceptor" />
+			<interceptor-stack name="applicationInterceptorStack">
+				<interceptor-ref name="applicationInterceptor" />
+				<interceptor-ref name="userInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- Lets configure the Default Interceptor Stack -->
+		<default-interceptor-ref name="applicationInterceptorStack" />
+
+		<!-- Defining the Global Result Pages -->
+		<global-results>
+			<result name="login" type="redirect">/jsp/login.jsp</result>
+			<result name="error" type="redirect">/jsp/error.jsp</result>
+		</global-results>
+		
+		<!-- To enable the users to login to the System -->
+		<action name="LoginAction" class="com.patni.action.LoginAction">
+			<interceptor-ref name="applicationInterceptor" />
+			<interceptor-ref name="defaultStack" />
+			<result>/jsp/homepage.jsp</result>
+		</action>
+		
+		<!-- Log the user out of the System -->
+		<action name="LogoutAction" class="com.patni.action.LogOutAction">
+		</action>
+		
+		<!-- Display the Store Details -->
+		<action name="DisplayStore" class="com.patni.action.DisplayStoreAction">
+			<result name="input">/jsp/homepage.jsp</result>
+			<result>/jsp/store.jsp</result>
+		</action>
+		
+		<!-- Get the Opening Times for the Store -->
+		<action name="OpenStoreDetailsAction" class="com.patni.action.OpenStoreDetailsAction">
+			<result>/jsp/store.jsp</result>
+		</action>
+		
+		<!-- Display the FDI History for the Store -->
+		<action name="FdiAction" class="com.patni.action.FdiAction">
+			<result>/jsp/fdi_history.jsp</result>
+		</action>
+		
+		<!-- Display the Volume Details for the Store -->
+		<action name="VolumeAction" class="com.patni.action.VolumeAction">
+			<result>/jsp/volume.jsp</result>
+		</action>
+		
+		<!-- Display the Address Details for the Store -->
+		<action name="AddressAction" class="com.patni.action.AddressAction">
+			<result>/jsp/address.jsp</result>
+		</action>
+		
+		<!-- Display the Call Activities for the Store -->
+		<action name="DisplayCalls" class="com.patni.action.DisplayCalls">
+			<result>/jsp/display_calls.jsp</result>
+		</action>
+		
+		<!-- Display the Comments for the Store -->
+		<action name="CommentAction" class="com.patni.action.CommentAction">
+			<result>/jsp/comments.jsp</result>
+		</action>
+		
+		<action name="TestAction" class="com.patni.action.TestAction">
+			<result>/jsp/login.jsp</result>
+		</action>
+		
+		<!-- Display the Contact details for the Store -->
+		<action name="DisplayContact" class="com.patni.action.DisplayContactsAction">
+			<result>/jsp/display_contacts.jsp</result>
+		</action>
+		
+		<!-- Display the Equipment details for the Store -->
+		<action name="EquipmentAction" class="com.patni.action.EquipmentAction">
+			<result>/jsp/equipment.jsp</result>
+		</action>
+		
+		<!-- Display the Program Details for the Store -->
+		<action name="ProgramAction" class="com.patni.action.ProgramAction">
+			<result>/jsp/program.jsp</result>
+		</action>
+		 
+		<!-- Add a new Comment for the Store -->	
+		<action name="AddCommentAction" class="com.patni.action.AddCommentAction">
+			<result>/jsp/closetab.jsp</result>
+		</action>
+		
+		<!-- Add a new Contact for the Store -->
+		<action name="AddContactAction" class="com.patni.action.AddContactAction">
+			<result>/jsp/closetab.jsp</result>
+		</action>
+		
+		<!-- Load the details in the edit form -->
+		<action name="EditStoreAction" class="com.patni.action.EditStoreAction">
+			<result>/jsp/editstore.jsp</result>
+		</action>
+		
+		<!-- Save the Store details -->
+		<action name="SaveStoreAction" class="com.patni.action.SaveStoreAction">
+			<result type="redirectAction">DisplayStore</result>
+		</action>
+
+	</package>
+</struts>
+}}}
