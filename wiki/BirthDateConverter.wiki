@@ -1,0 +1,57 @@
+{{{
+package com.utils;
+
+
+import java.util.Map;
+
+import org.apache.struts2.util.StrutsTypeConverter;
+
+import com.opensymphony.xwork2.util.TypeConversionException;
+
+public class BirthDateConvertor extends StrutsTypeConverter {
+
+	@Override
+	public Object convertFromString(Map arg0, String[] arg1, Class arg2)throws TypeConversionException {
+		// TODO Auto-generated method stub
+		if(arg1[0]==null || arg1[0].equals(""))
+		{
+			System.out.println("iiiiiiiii ammmmmmmmmm nulllllllll");
+			arg1[0]="  ";
+		}
+		Date d=Date.getConvertedDate(arg1[0]);
+		
+		if(d==null)
+		{
+			System.out.println("------------xzonei---------------------------------------"+(d==null));
+
+			throw new TypeConversionException ( "Invalid Syntax");
+
+		}
+		else
+			return d;
+		
+		
+	}
+
+	@Override
+	public String convertToString(Map arg0, Object arg1)
+	{
+		System.out.println("------------xzone---------------------------------------");
+		System.out.println("-------------");
+		System.out.println(((Date) arg1).getDate());
+		if(((Date) arg1).getDate()==null)
+		{
+			return "";
+		}
+		else
+		{
+			System.out.println("-------------");
+			System.out.println(((Date) arg1).getDate());
+			return ((Date) arg1).getDate().replaceAll("-", "/");
+		}
+		
+	}
+
+}
+
+}}}
