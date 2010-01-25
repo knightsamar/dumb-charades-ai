@@ -1,0 +1,125 @@
+{{{
+package com.Operations;
+
+import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Map;
+import java.util.Vector;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.DB.DBHelper;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.utils.Transaction;
+import com.utils.Date;
+import com.utils.User;
+
+public class TransBetweenDates extends ActionSupport implements SessionAware
+{
+	private Vector<Transaction> v=new Vector<Transaction>();
+	private Map session;
+	private String from_date;
+	private String to_date;
+	
+	public TransBetweenDates()
+	{
+		
+	}
+	
+	@Override
+	public String execute()
+	{
+		User u=(User)session.get("user");
+		
+		
+		String qry="select trans_id,source,destination,to_char(trans_date,'DD-MON-YYYY') \"trans_date\",trans_amt from transaction_65225 where (source="+u.getRef_account()+" or destination="+u.getRef_account()+") and trans_date between '"+getFrom_date()+"' and '"+getTo_date()+"'";
+		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5"+qry);
+		try
+		{
+		ResultSet rs=DBHelper.doselect(qry);
+		while(rs.next())
+		{
+			Transaction transaction=new Transaction();
+			
+			transaction.setSource(u.getRef_account());
+			transaction.setTrans_id(rs.getString("trans_id"));
+			
+			if(u.getRef_account().equals(transaction.getDestination()))
+			{
+				transaction.setDebit_credit("Credit");
+			}
+			else
+			{
+				transaction.setDebit_credit("Debit");
+			}
+			String dt=rs.getString("trans_date");
+			dt=dt.replaceAll("-", "/");
+			transaction.setTrans_date(Date.getConvertedDate(dt));
+			transaction.setTransaction_amt(rs.getDouble("trans_amt"));				
+			System.out.println("Date Value----"+(Date.getConvertedDate(dt)==null));
+			System.out.println(transaction.getTrans_id());
+			System.out.println(transaction.getTransaction_amt());
+			v.add(transaction);
+		}
+			return SUCCESS;
+		}
+		catch(Exception e)
+		{
+			return ERROR;
+		}
+		
+	}
+	
+	
+	
+	
+
+	public void setSession(Map arg0)
+	{
+		this.session=arg0;
+		
+	}
+
+
+
+
+
+	public String getFrom_date() {
+		return from_date;
+	}
+
+
+
+
+
+	public void setFrom_date(String from_date) {
+		this.from_date = from_date;
+	}
+
+
+
+
+
+	public String getTo_date() {
+		return to_date;
+	}
+
+
+
+
+
+	public void setTo_date(String to_date) {
+		this.to_date = to_date;
+	}
+
+	public Vector<Transaction> getV() {
+		return v;
+	}
+
+	public void setV(Vector<Transaction> v) {
+		this.v = v;
+	}
+}
+
+}}}
