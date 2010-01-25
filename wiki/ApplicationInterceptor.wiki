@@ -1,0 +1,121 @@
+#labels Phase-Deploy
+{{{
+package com.patni.utils;
+
+import java.util.Map;
+import javax.naming.InitialContext;
+import javax.servlet.ServletContext;
+import javax.sql.DataSource;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.interceptor.Interceptor;
+
+public class ApplicationInterceptor implements Interceptor
+{
+    private static final long serialVersionUID = 1L;
+
+    /**
+     *  
+     */
+    public void destroy()
+    {
+        System.out.println("--------------------------------- KOMOST Application Going Down... -----------------------------------");
+    }
+
+    public void init()
+    {
+        System.out.println("----------------------------------- KOMOST Application is Coming Up... ----------------------------------");
+    }
+
+    @SuppressWarnings("unchecked")
+    public String intercept(ActionInvocation actionInvocation) throws Exception
+    {
+        boolean invoke = false;
+        
+        // Lets get the Application Map which stores all Application Level Objects
+        Map application = actionInvocation.getInvocationContext().getApplication();
+        
+        // Lets get the DatabaseHelper instance and Logger instance.
+        DatabaseHelper dbHelper = (DatabaseHelper) application.get("dbHelper");
+        Logger logger = (Logger) application.get("logger");
+        
+        // Check if these instances are successfully obtained from the application context
+        if((dbHelper == null) || (logger == null))
+        {
+            String pathSeparator = System.getProperty("file.separator");
+            
+            // Lets configure the Logger
+            //PropertyConfigurator.configure("com"+pathSeparator+"patni"+pathSeparator+"utils"+pathSeparator+"log4j.properties");
+            Logger myLogger = Logger.getLogger("Application Logger");
+            
+            // Set the Layout for the Appender
+            PatternLayout layout = new PatternLayout();
+            layout.setConversionPattern("[%5p] %d{dd-mm-yyyy hh:mm:ss} (%F:%M:%L) --> %m%n");
+            
+            // Set the Path where the Log File need to be stored.
+            ServletContext context = (ServletContext) actionInvocation.getInvocationContext().getContextMap().get("com.opensymphony.xwork2.dispatcher.ServletContext");
+            String logFilePath = context.getRealPath("/")+".."+pathSeparator+"KOMOST"+pathSeparator+"log"+pathSeparator+"application.log";
+            
+            System.out.println(" ****************** "+logFilePath);
+            
+            // Create the Appender
+            FileAppender appender = new FileAppender(layout,logFilePath);
+            appender.setAppend(true);
+            
+            // Set the Appender for the Logger
+            myLogger.addAppender(appender);
+            
+            // Done configuring the Logger. Lets set it now on the Application
+            application.put("logger", myLogger);
+            
+            myLogger.debug("Logger Configured...");
+            
+            // Lets configure the dbHelper
+            dbHelper = new DatabaseHelper();
+            
+            try
+            {
+                InitialContext ic = new InitialContext();
+                DataSource databasePool = (DataSource) ic.lookup("java:/OracleDS_Lab");
+                
+                if(databasePool != null)
+                {
+                    // Configuration of the DataSource Pool is successful
+                    dbHelper.Configure(databasePool, logger);
+                    
+                    // Lets put the dbHelper instance in the Application Context so that every1 can use it.
+                    application.put("dbHelper", dbHelper);
+                    invoke = true;
+                }
+                else
+                {
+                    System.out.println("------------------ Unable to get the DataSource. Application cannot continue... ---------------");
+                }
+            }
+            catch(Exception e)
+            {
+                // Unable to get the Database instance from the JNDI lookup.
+                System.out.println(" ----------------- Unable to locate the DataSource JNDI. --> "+e.getMessage());
+            }
+        }
+        else
+        {
+            // Both dbHelper and logger instances are available. Proceed
+            invoke = true;
+        }
+        
+        // Check if we have to invoke the rest of the interceptors or not.
+        if(invoke)
+        {
+            return actionInvocation.invoke();
+        }
+        else
+        {
+            return "login";
+        }
+    }
+}
+
+}}}
