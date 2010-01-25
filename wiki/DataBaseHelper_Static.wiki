@@ -1,0 +1,663 @@
+{{{
+package com.patni.utils;
+
+import java.io.*;
+import java.sql.*;
+import java.util.Properties;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import oracle.jdbc.pool.OracleDataSource;
+
+/**
+ * <div style="font:12px 'Verdana';">DatabaseHelper class provides the various inbuilt operations for working with Database. This classes uses the 
+ * core libraries for Oracle database and hence works with Oracle Database 9i.<br/><br/>
+ * 
+ * For working of this Utility class you need to have following jar files included in your classpath.<br/>
+ *  &bull; classes12.jar - <DRIVE>\oracle\ora92\jdbc\lib\classes12.jar<br/>
+ *  &bull; ocrs.jar      - <DRIVE>\oracle\ora92\jdbc\lib\ocrs.jar<br/>
+ *  &bull; ojdbc.jar     - <DRIVE>\oracle\ora92\jdbc\lib\ojdbc.jar<br/>
+ * 
+ * <br/>It uses a configuration file for initialization for the connection. Here is a sample configuration file<br/>
+ * 
+ * <br/>Limitations.
+ * <ul>
+ * <li>As all the methods are static, you cannot use it to get connections from multiple databases at the same time. Although, at different times, you can configure the Helper for multiple databases using multiple configuration files that you provide to it.</li>
+ * <li>All queries have to be built by the user explicitly. No provision is added for Parameterized queries as of now.</li>
+ * 
+ * 
+ * 
+ * @author Deepak Shakya
+ * @version 1.0
+ * @date 21-11-2009
+ * </div>
+ */
+
+public class DatabaseHelper
+{
+    /**
+     * Stores the connections in a pool.
+     */
+    private static DataSource databasePool = null;
+    
+    /**
+     * Stores the errors generated during the database operation. Use it get more details about the error occurred
+     * when the operation did not work properly.
+     */
+    public static String ERROR_MESSAGE;
+    
+    /**
+     * Stores the Connection String URL of the databse.
+     */
+    private static String URL;
+    
+    /**
+     * Stores the Username of the databse. The value comes from an external configuration file
+     */
+    private static String USERNAME;
+    
+    /**
+     * Stores the Password for the Username. The value comes from an external configuration file
+     */
+    private static String PASSWORD;
+    
+    /**
+     * Stores the Database name. The values comes from an external configuration file
+     */
+    private static String DATABASENAME;
+    
+    /**
+     * Stores the Server name or IP address for the Oracle Server. The value comes from an external configuration file
+     */
+    private static String SERVER;
+    
+    /**
+     * Stores the Port Number on which the Oracle Database Service is running. The value comes from an external configuration file 
+     */
+    private static String PORT;
+    
+    /**
+     * The key value that corresponds to the Username of the database in external configuration file
+     */
+    private static String USERNAME_KEY = "username";
+    
+    /**
+     * The key value that corresponds to the Password of the database in external configuration file
+     */
+    private static String PASSWORD_KEY = "password";
+    
+    /**
+     * The key value that corresponds to the Databasename of the database in external configuration file
+     */
+    private static String DATABASENAME_KEY = "database_name";
+    
+    /**
+     * The key value that corresponds to the Server of the database in external configuration file
+     */
+    private static String SERVER_KEY = "server";
+    
+    /**
+     * The key value that corresponds to the Port of the database in external configuration file
+     */
+    private static String PORT_KEY = "port";
+    
+    /**
+     * Determines whether this Helper has been configured for Database services or not
+     */
+    private static boolean isInitialized = false;
+    
+    /**
+     * Configures the DataSource via the default JNDI lookup 
+     * 
+     * @return TRUE if the DataSource instance was obtained via the JNDI lookup
+     */
+    public static boolean Configure()
+    {
+    	boolean operation_result = false;
+    	
+    	if(!(isInitialized))
+    	{
+    		try
+            {
+            	InitialContext ic = new InitialContext();
+                databasePool = (DataSource) ic.lookup("java:/OracleDS_Lab");
+                
+                if(databasePool != null)
+                {
+                	// Our database pool is Initialized
+                	isInitialized = true;
+
+                    // Configuration of the DataSource Pool is successful
+                    operation_result = true;
+                }
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+		}
+    	else
+    	{
+    		operation_result = true;
+    	}
+        
+    	return operation_result;
+    }
+    
+    /**
+     * Configures the Database Helper with the provided DataSource
+     * 
+     * @param ds DataSource instance which should be used for Database transactions
+     * @return TRUE if the configuration was done successfully.
+     */
+    public static boolean Configure(DataSource ds)
+    {
+    	boolean operation_result = false;
+    	
+        try
+        {
+            databasePool = ds;                          // Get the DataSource Object
+            // Our database pool is Initialized
+            isInitialized = true;
+
+            // Configuration of the DataSource Pool is successful
+            operation_result = true;
+        }
+        catch(Exception e)
+        {
+            ERROR_MESSAGE = e.getMessage();
+        }
+    	
+    	return operation_result;
+    }
+    
+    /**
+     * Configurates the DataSource for obtaining the connection instances for database operations.
+     * It should be called first to configure the DataSource by providing the fileName which contains the 
+     * configuration values for the database to be used.
+     * 
+     * @param fileName - configuration file that contains keys for initializing the database connection
+     * @return TRUE if the connection with the database with the specified configuration file has been established successfully
+     */
+    public static boolean Configure(String fileName)
+    {
+        // Create an instance of the Properties for loading the properties from the external file
+        Properties property = new Properties();
+
+        boolean operation_result = false;
+        try
+        {
+            // Load the properties from the fileName
+            property.load(new FileInputStream(fileName));
+            
+            // Load the USERNAME value from the external configuration file
+            if((USERNAME = property.getProperty(USERNAME_KEY)) == null)
+            {
+                // Unable to locate the USERNAME key.
+                ERROR_MESSAGE = "No key found for '"+USERNAME_KEY+"' in the specied configuration file";
+            }
+            
+            // Load the PASSWORD value from the external configuration file
+            if((PASSWORD = property.getProperty(PASSWORD_KEY)) == null)
+            {
+                // Unable to locate the PASSWORD key.
+                ERROR_MESSAGE = "No key found for '"+PASSWORD_KEY+"' in the specied configuration file";
+            }
+            
+            // Load the DATABASENAME value from the external configuration file
+            if((DATABASENAME = property.getProperty(DATABASENAME_KEY)) == null)
+            {
+                // Unable to locate the DATABASENAME key.
+                ERROR_MESSAGE = "No key found for '"+DATABASENAME_KEY+"' in the specied configuration file";
+            }
+            
+            // Load the SERVER value from the external configuration file
+            if((SERVER = property.getProperty(SERVER_KEY)) == null)
+            {
+                // Unable to locate the DATABASENAME key.
+                ERROR_MESSAGE = "No key found for '"+SERVER_KEY+"' in the specied configuration file";
+            }
+            
+            // Load the PORT value from the external configuration file
+            if((PORT = property.getProperty(PORT_KEY)) == null)
+            {
+                // Unable to locate the DATABASENAME key.
+                ERROR_MESSAGE = "No key found for '"+PORT_KEY+"' in the specied configuration file";
+            }
+                    
+            // Add Keys have been loaded Successfully. Lets set the values for the DataSourceObject
+            URL = "jdbc:oracle:thin:@"+SERVER+":"+PORT+":"+DATABASENAME;    // Set the URL
+
+            databasePool = new OracleDataSource();                          // Get the DataSource Object
+            ((OracleDataSource)databasePool).setUser(USERNAME);             // Set the Username 
+            ((OracleDataSource)databasePool).setPassword(PASSWORD);         // Set the Password
+            ((OracleDataSource)databasePool).setURL(URL);                   // Set the URL
+            
+            // Our database pool is Initialized
+            isInitialized = true;
+
+            // Configuration of the DataSource Pool is successful
+            operation_result = true;
+        }
+        catch(SQLException e)
+        {
+            ERROR_MESSAGE = "SQL Error : " + e.getMessage();
+        }
+        catch(NumberFormatException e)
+        {
+            ERROR_MESSAGE = "Invalid key value found for a Key.\n"+e.getMessage();
+        }
+        catch(IOException e)
+        {
+            ERROR_MESSAGE = "Unable to load the configuration file. Please check the specified file.";
+        }
+        catch(Exception e)
+        {
+            ERROR_MESSAGE = e.getMessage();
+        }
+        
+        // Return the result of configuration operation. If the configuration is done properly, it returns TRUE.
+        return operation_result;
+    }
+    
+    /**
+     * Gets the Connection Instance for the configured Database. It should be called after the configuring the
+     * database.
+     * 
+     * @return Connection Instance for the configured database. null otherwise
+     */
+    public static Connection getConnection()
+    {
+        Connection conn = null;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured. Get the Connection Instance
+            try
+            {
+                conn = databasePool.getConnection();
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : " + e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first to get a connection instance.";
+        }
+        
+        // Return the connection instance for the configured DataSource. null is returns otherwise
+        return conn;
+    }
+    
+    /**
+     * Sets the mark that the statements to be executed using the Connection Instance conn will be done under the
+     * same transaction till the next notification with endTransaction()
+     * 
+     * @param conn - Connection Instance which performs wants to execute queries in one transaction
+     * @return TRUE if the conn was successfully marked for transaction operation
+     */
+    public static boolean startTransaction(Connection conn)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            try
+            {
+                // Set the Auto-Commit option for the given connection to false
+                conn.setAutoCommit(false);
+                operation_result = true;
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        return operation_result;
+    }
+    
+    /**
+     * Rolls back the operations done by the conn instance on the database.
+     * 
+     * @param conn - Connection Instance which wants to rollback the operations
+     * @return TRUE if the conn operations were rollbacked successfully
+     */
+    public static boolean rollbackTransaction(Connection conn)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            try
+            {
+                // Rollback the changes made to the database
+                conn.rollback();
+                operation_result = true;
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        return operation_result;
+    }
+    
+    /**
+     * Sets the mark that the statements to be executed using the Connection Instance conn will no longer be done
+     * under the same transaction till the next notification with startTransaction()
+     * 
+     * @param conn - Connection Instance which wants to terminate the transaction successfully
+     * @return TRUE if the changes made by the conn in the database were commited successfully
+     * 
+     * Note: Queries executed after endTransaction will not be a part of the transaction and will be auto-commited  
+     */
+    public static boolean endTransaction(Connection conn)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            try
+            {
+                // Commit the changes made by the conn instance and set Auto-Commit to false
+                conn.commit();
+                conn.setAutoCommit(true);
+                operation_result = true;
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        return operation_result;
+    }
+    
+    /**
+     * Executes the Data Definition Language(DDL) query on the database and returns the operation result of the query
+     * Allowed DDL queries are - CREATE, ALTER, DROP, TRUNCATE
+     * 
+     * @param conn - Connection Instance on which the DDL operation has to be performed
+     * @param query - DDL query that needs to be executed on the conn
+     * @return - TRUE if the query was executed successfully. FALSE otherwise. Check ERROR_MESSAGE for details of failure
+     */
+    public static boolean doDDLQuery(Connection conn, String query)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            
+            // Check if the User Provides only DDL Queries here.
+            String query_type = query.substring(0, 5).replaceAll(" ", "").toUpperCase();
+            if(query_type.equals("CREAT") || query_type.equals("ALTER") || query_type.equals("DROP") || query_type.equals("TRUNC"))
+            {
+                // Found a Valid Query. Execute the Query
+                try
+                {
+                    Statement s = conn.createStatement();                    
+                    s.execute(query);
+                    s.close();
+                    operation_result = true;
+                }
+                catch(SQLException e)
+                {
+                    ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+                }
+                catch(Exception e)
+                {
+                    ERROR_MESSAGE = e.getMessage();
+                }  
+            }
+            else
+            {
+                // This is an invalid Query. Inform the user about it.
+                ERROR_MESSAGE = "Query doesn't contain DDL operation. Cannot perform the requested operation.";
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        // Return the result of the DDL Query
+        return operation_result;
+    }
+    
+    /**
+     * Executes the Data Manipulation Language(DDL) query on the database and returns the total number of rows
+     * affected with the successful execution of the DML query. 
+     * Allowed DML queries are - INSERT,UPDATE,DELETE
+     * 
+     * @param conn - Connection Instance on which the DML operation has to be performed
+     * @param query - DML query that needs to be executed on the conn
+     * @return - Number of affected rows for successful execution of DML query in integer. -1 if the query fails to execute 
+     */
+    public static int doDMLQuery(Connection conn, String query)
+    {
+        int rows_affected = -1;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            
+            // Check if the User Provides only DML Queries here.
+            String query_type = query.substring(0, 6).replaceAll(" ", "").toUpperCase();
+            if(query_type.equals("INSERT") || query_type.equals("UPDATE") || query_type.equals("DELETE"))
+            {
+                // Found a Valid Query. Execute the Query
+                try
+                {
+                    Statement s = conn.createStatement();                    
+                    rows_affected = s.executeUpdate(query);
+                    s.close();
+                }
+                catch(SQLException e)
+                {
+                    ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+                }
+                catch(Exception e)
+                {
+                    ERROR_MESSAGE = e.getMessage();
+                }  
+            }
+            else
+            {
+                // This is an invalid Query. Inform the user about it.
+                ERROR_MESSAGE = "Query doesn't contain DML operation. Cannot perform the requested operation.";
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        // Return the result of the DDL Query
+        return rows_affected;
+    }
+    
+    /**
+     * Executes the SELECT query on the database and returns the matching rows for the successful execution of the query. 
+     * 
+     * @param conn - Connection Instance on which the query has to be executed
+     * @param query - SELECT query that needs to be executed on the conn
+     * @return - Returns the rows fetched for the SELECT query. NULL if the query fails to execute
+     * 
+     * Note : The ResultSet obtained is read-only and also can be traversed from both directions. That is, the 
+     * cursor can be moved in both direction in the resultset
+     */
+    public static ResultSet doSelectQuery(Connection conn, String query)
+    {
+        ResultSet rs = null;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            
+            // Check if the User Provides only SELECT Queries here.
+            String query_type = query.substring(0, 6).replaceAll(" ", "").toUpperCase();
+            if(query_type.equals("SELECT"))
+            {
+                // Found a Valid Query. Execute the Query
+                try
+                {
+                    Statement s = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);                    
+                    rs = s.executeQuery(query);
+                    //s.close();
+                }
+                catch(SQLException e)
+                {
+                    ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+                }
+                catch(Exception e)
+                {
+                    ERROR_MESSAGE = e.getMessage();
+                }  
+            }
+            else
+            {
+                // This is an invalid Query. Inform the user about it.
+                ERROR_MESSAGE = "Query doesn't contain SELECT operation. Cannot perform the requested operation.";
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        // Return the result of the DDL Query
+        return rs;
+    }
+    
+    /**
+     * Executes a stored procedure in the DataBase.
+     * 
+     * @param conn Connection Instance on which the stored procedure needs to be executed
+     * @param query Query that determines the stored procedure to be executed.
+     * @return TRUE if the Stored procedure was executed successfully.
+     */
+    public static boolean executeProcedure(Connection conn,String query)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            try
+            {
+                // We need a CallableStatement to execute a Stored Procedure
+                CallableStatement cs = conn.prepareCall("{ "+query+" }");
+                cs.execute();
+                cs.close();
+                operation_result = true;
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        return operation_result;
+    }
+    
+    /**
+     * Closes the Connection of conn Instance with the Database.
+     * 
+     * @param conn - Connection Instance which will be closed
+     * @return TRUE if the Connection was terminated successfully, commiting the changes made to the database
+     */
+    public static boolean closeConnection(Connection conn)
+    {
+        boolean operation_result = false;
+        
+        // Check if the DataSource has been configured or not
+        if(isInitialized)
+        {
+            // DataSource has been configured.
+            try
+            {
+                // Commit the changes made by the conn instance and close the connection
+            	if(!(conn.getAutoCommit()))
+            	{
+            		conn.commit();
+            	}
+                conn.close();
+            }
+            catch(SQLException e)
+            {
+                ERROR_MESSAGE = "SQL Error : "+e.getMessage();
+            }
+            catch(Exception e)
+            {
+                ERROR_MESSAGE = e.getMessage();
+            }
+            finally
+            {
+                // Set the conn to null.
+                conn = null;
+                operation_result = true;
+            }
+        }
+        else
+        {
+            ERROR_MESSAGE = "DataSource is not configured. Please configure the database using Configure() first";
+        }
+        
+        return operation_result;
+    }
+}
+
+}}}
