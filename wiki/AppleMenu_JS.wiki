@@ -1,0 +1,182 @@
+{{{
+/******************************************************************************
+*   Javascript Document
+*   File name : Apple Menu.js
+
+*   Created By :- Deepak Shakya
+*   Date :- 10/26/2009
+*   Description: This is the script file that creates the animation for the 
+*                apple menu.
+*   Assumptions:
+*   - This program assumes that the menu items have numberings in series starting from 1.
+******************************************************************************/
+
+/* Defining the constats - Used globally in the script */
+var container_id             = "container";             /* id value of the main container */
+var menuitems_id             = "menu";                  /* id value for the menu items - will be appended with number for the menu item */
+var menu_width               = 250;                     /* width of the menu on the screen */
+/*
+We will be making the height parameter with respect to the number of menu items and their total
+screen coverage. Offset of the last menu item + height of the menu item
+var menu_height              = 400;                     /* height of the menu on the screen
+
+*/
+
+var menuitem_header_height   = 30;                      /* height of the header part within the menuitem */
+var menuitem_body_height     = 100;                     /* height of the body part within the menuitem */
+var menuitem_footer_height   = 50;                      /* height of the footer part within the menuitem */
+
+var menuitem_height          = menuitem_header_height + menuitem_body_height + menuitem_footer_height;
+
+var total_items              = 0;                       /* total count of all the menu items */
+var menuitem_top_offset      = menuitem_footer_height;  /* offset of the each menu item from the top */
+
+var interval                 = 30;                      /* determines the speed of the animation - less value means faster animation */
+var slide_value              = 10;                      /* the amount of sliding for each menuitem while animating */
+
+var x = null;                                           /* used for setting and resetting timeouts */
+
+/********************************************************
+	Initializer function - Initializes the menu
+********************************************************/
+
+function initialize()
+{
+	// Lets first layout the container
+	var container = document.getElementById(container_id);
+
+	// Count the total number of menu items
+	var i=1;
+		
+	var obj = "";              /* get each menuitem for initialization */
+	var top = 0;               /* will store the cumulative top offset to be set for each menu item */
+	var zIndex = 100;           /* used to set the layering of the menu items */
+
+	while((obj = document.getElementById(menuitems_id+i)) != null)
+	{
+		obj.childNodes[0].style.height = menuitem_header_height + "px";  /* set the height of the header part of menuitem */
+		obj.childNodes[1].style.height = menuitem_body_height + "px";  /* set the height of the header part of menuitem */
+		obj.childNodes[2].style.height = menuitem_footer_height + "px";  /* set the height of the header part of menuitem */
+
+		obj.style.height = menuitem_height + "px";  /* set the height of the menuitem */
+
+		obj.style.marginTop = top + "px";   /* set the top offset of the menuitem */
+		obj.style.zIndex = zIndex;          /* setting the layering of the menuitem in the stack */
+
+		top += menuitem_top_offset;    /* Increment the offset for the next menuitem */
+		total_items++;                 /* Incrementing the total count for a valid menutitem */
+		zIndex--;                      /* Incrementing the zIndex value for next menuitem */
+		i++;
+	}
+
+	//Setting the width and height of the main container
+	container.style.width = menu_width+"px";
+	container.style.height = (top + menuitem_height)+"px";
+
+}
+
+/********************************************************
+	This function makes the animation happen
+********************************************************/
+function moveMenuItems(objNo)
+{
+	moveUp(objNo-1);        //Following will move the menuitems up in the stack showing the one we need
+
+	moveDown(objNo);        //Following will move the menuitems down the stack showing the one we need
+
+	// Check if we need to loop again for animation as all the menuitems have not been set to 
+	// desired positions
+	if(checkAllSet(objNo))
+	{
+		x = window.setTimeout("moveMenuItems("+objNo+")",interval);
+	}
+	else
+	{
+		window.clearTimeout(x);
+	}
+}
+
+
+function checkAllSet(objNo)
+{
+	var container = document.getElementById(container_id);
+	var i=1;
+	var obj = "";
+
+	//Iterate all the objects to get their correct position
+	while((obj = document.getElementById(menuitems_id+i)) != null)
+	{
+		var required_offset = 0;
+
+		if(i<objNo)
+		{
+			//required offset for the menus above the objNo
+			required_offset = -(menuitem_height-(i*menuitem_footer_height));
+		}
+		else
+		{
+			//required offset for the menus below the objNo
+			required_offset = (i-1)*(menuitem_footer_height);
+		}
+
+		//Check if the object is positioned correctly
+		if(parseInt(obj.style.marginTop) != required_offset)
+		{
+			return true;
+		}
+
+		i++;
+	}
+
+	return false;
+}
+
+
+function moveUp(objNo)
+{
+	var toLoop = false;
+	//Loop all the menuitems and move them upwards. If all the menuitems have been moved
+	// to desired places. Then return false. Return true in all other cases.
+	for(var i=1; i<=objNo; i++)
+	{
+		var obj = document.getElementById(menuitems_id+i);
+		var marginTop = parseInt(obj.style.marginTop);
+
+		var required_offset = -(menuitem_height-(i*menuitem_footer_height));
+
+		//alert(marginTop+"--"+required_offset);
+
+		if(marginTop > required_offset)
+		{
+			obj.style.marginTop = (marginTop - slide_value)+"px";
+			toLoop = true;
+		}
+	}
+
+	return toLoop;
+}
+
+
+
+function moveDown(objNo)
+{
+	var toLoop = false;
+	//Loop all the menuitems and move them downwards. If all the menuitems have been moved
+	// to desired places. Then return false. Return true in all other cases.
+	for(var i=objNo; i<=total_items; i++)
+	{
+		var obj = document.getElementById(menuitems_id+i);
+		var marginTop = parseInt(obj.style.marginTop);
+
+		var required_offset = (i-1)*(menuitem_footer_height);
+
+		if(marginTop < required_offset)
+		{
+			obj.style.marginTop = (marginTop + slide_value)+"px";
+			toLoop = true;
+		}
+	}
+
+	return toLoop;
+}
+}}}
