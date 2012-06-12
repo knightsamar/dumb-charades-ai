@@ -29,7 +29,7 @@ speak    180
 utter     54
 }}}
 
-Then the probability of people responding the work "say" for the same action sequence is more than for the word "utter".
+Then the probability of people responding the word "say" for the same action sequence is more than for the word "utter".
 
 == * Demo Video*==
 http://www.youtube.com/watch?v=X2Alkoy1PYg
